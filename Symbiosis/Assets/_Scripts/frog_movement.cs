@@ -7,19 +7,24 @@ using UnityEngine;
 public class frog_movement : MonoBehaviour
 {
     [Header("Horizontal Movement")]
-    [SerializeField] private float f_move_speed = 1.0f;
-    [SerializeField] private float f_top_speed = 2.0f;
-    [SerializeField] private float f_move_damper = 0.5f;
+    [SerializeField] private float f_move_speed = 0.2f;
+    [SerializeField] private float f_top_speed = 8.0f;
+    [SerializeField] private float f_move_damper = 0.1f;
 
     [Header("Jump")]
-    [SerializeField] private float f_jump_speed = 15.0f;
+    [SerializeField] private float f_jump_speed = 10.0f;
     [SerializeField] private float f_g = 9.8f;
 
     [Header("Debug")]
     [SerializeField] private float f_horizontal_velocity = 0.0f;
     [SerializeField] private float f_vertical_velocity = 0.0f;
+    [SerializeField] private bool b_grounded = false;
 
-
+    private void Start()
+    {
+        Rigidbody2D rb = transform.AddComponent<Rigidbody2D>();
+        //rb.isKinematic = true;
+    }
     void Update()
     {
         //inputs
@@ -33,7 +38,7 @@ public class frog_movement : MonoBehaviour
             f_horizontal_velocity += f_move_speed;
         }
 
-        if ( Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             f_vertical_velocity += f_jump_speed;
         }
@@ -47,24 +52,28 @@ public class frog_movement : MonoBehaviour
         if (Mathf.Abs(f_horizontal_velocity) > 0.0f)
         {
             f_horizontal_velocity = (f_horizontal_velocity > 0) ? f_horizontal_velocity - f_move_damper : f_horizontal_velocity + f_move_damper;
-            if (Mathf.Abs(f_horizontal_velocity) < 0.02f)
+            if (Mathf.Abs(f_horizontal_velocity) < f_move_damper * 0.1f)
             {
                 f_horizontal_velocity = 0.0f;
             }
         }
 
-
         //vertical speed control
-        f_vertical_velocity -= f_g;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up);
-        if (hit.collider != null)
+        if (!b_grounded)
         {
-            Debug.Log("hit");
-            f_vertical_velocity = 0.0f;
+            f_vertical_velocity -= f_g * Time.deltaTime;
         }
+        
 
         transform.position += new Vector3(f_horizontal_velocity * Time.deltaTime, f_vertical_velocity * Time.deltaTime, 0);
-
     }
-    
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        b_grounded = true;
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        b_grounded = false;
+    }
 }
