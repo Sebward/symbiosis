@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
+
 
 public class frog_movement : MonoBehaviour
 {
@@ -19,11 +16,12 @@ public class frog_movement : MonoBehaviour
     [SerializeField] private float f_horizontal_velocity = 0.0f;
     [SerializeField] private float f_vertical_velocity = 0.0f;
     [SerializeField] private bool b_grounded = false;
+    [SerializeField] private bool b_jump = false;
+    [SerializeField] private BoxCollider2D b_collider;
 
     private void Start()
     {
-        Rigidbody2D rb = transform.AddComponent<Rigidbody2D>();
-        //rb.isKinematic = true;
+        b_collider = GetComponent<BoxCollider2D>();
     }
     void Update()
     {
@@ -41,8 +39,12 @@ public class frog_movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             f_vertical_velocity += f_jump_speed;
+            b_jump = true;
         }
-
+       
+    }
+    private void FixedUpdate()
+    {
         //horizontal speed control
         if (Mathf.Abs(f_horizontal_velocity) > f_top_speed)
         {
@@ -59,21 +61,37 @@ public class frog_movement : MonoBehaviour
         }
 
         //vertical speed control
-        if (!b_grounded)
+        if (!b_jump)
         {
-            f_vertical_velocity -= f_g * Time.deltaTime;
+            if (!b_grounded)
+            {
+                f_vertical_velocity -= f_g * Time.deltaTime;
+            }
+            else
+            {
+                f_vertical_velocity = 0.0f;
+            }
         }
-        
+        else b_jump = false;
 
         transform.position += new Vector3(f_horizontal_velocity * Time.deltaTime, f_vertical_velocity * Time.deltaTime, 0);
+
+        Debug.DrawRay(transform.position, -Vector2.up);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        b_grounded = true;
+        if (collision.gameObject.CompareTag("Mid-Ground"))
+        {
+            //int hit_count = Raycast(transform.position, Vector2.down);
+            b_grounded = true;
+        }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        b_grounded = false;
+        if (collision.gameObject.CompareTag("Mid-Ground"))
+        {
+            b_grounded = false;
+        }
     }
 }
