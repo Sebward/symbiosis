@@ -159,7 +159,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!114 &3005368834931138526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +179,9 @@ MonoBehaviour:
   f_g: 9.8
   f_horizontal_velocity: 0
   f_vertical_velocity: 0
-  b_grounded: 1
+  b_grounded: 0
+  b_jump: 0
+  b_collider: {fileID: 0}
 --- !u!1 &5157950947462196918
 GameObject:
   m_ObjectHideFlags: 0
