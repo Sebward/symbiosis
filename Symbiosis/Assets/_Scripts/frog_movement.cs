@@ -1,6 +1,11 @@
+<<<<<<< HEAD
+=======
+using System.Collections;
+using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
+>>>>>>> parent of d7623e5 (Merge branch 'main' of https://github.com/Sebward/symbiosis)
 using Unity.VisualScripting;
 using UnityEngine;
-
 
 public class frog_movement : MonoBehaviour
 {
@@ -17,11 +22,16 @@ public class frog_movement : MonoBehaviour
     [SerializeField] private float f_horizontal_velocity = 0.0f;
     [SerializeField] private float f_vertical_velocity = 0.0f;
     [SerializeField] private bool b_grounded = false;
+<<<<<<< HEAD
     [SerializeField] private bool b_jump = false;
     [SerializeField] private BoxCollider2D b_collider;
+=======
+
+>>>>>>> parent of d7623e5 (Merge branch 'main' of https://github.com/Sebward/symbiosis)
     private void Start()
     {
-        b_collider = GetComponent<BoxCollider2D>();
+        Rigidbody2D rb = transform.AddComponent<Rigidbody2D>();
+        //rb.isKinematic = true;
     }
     void Update()
     {
@@ -39,12 +49,8 @@ public class frog_movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             f_vertical_velocity += f_jump_speed;
-            b_jump = true;
         }
-       
-    }
-    private void FixedUpdate()
-    {
+
         //horizontal speed control
         if (Mathf.Abs(f_horizontal_velocity) > f_top_speed)
         {
@@ -67,26 +73,18 @@ public class frog_movement : MonoBehaviour
         else b_grounded = false;
 
         //vertical speed control
-        if (!b_jump)
+        if (!b_grounded)
         {
-            if (!b_grounded)
-            {
-                f_vertical_velocity -= f_g * Time.deltaTime;
-            }
-            else
-            {
-                f_vertical_velocity = 0.0f;
-            }
+            f_vertical_velocity -= f_g * Time.deltaTime;
         }
-        else b_jump = false;
+        
 
         transform.position += new Vector3(f_horizontal_velocity * Time.deltaTime, f_vertical_velocity * Time.deltaTime, 0);
-
-        Debug.DrawRay(transform.position, -Vector2.up);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+<<<<<<< HEAD
         float ray_distance = b_collider.size.y / 2.0f + 0.01f;
         RaycastHit2D[] hits = new RaycastHit2D[1];
         
@@ -106,5 +104,12 @@ public class frog_movement : MonoBehaviour
         {
             b_grounded = false;
         }
+=======
+        b_grounded = true;
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        b_grounded = false;
+>>>>>>> parent of d7623e5 (Merge branch 'main' of https://github.com/Sebward/symbiosis)
     }
 }
