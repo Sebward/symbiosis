@@ -15,9 +15,11 @@ public class SceneManage : MonoBehaviour
     public GameObject settings;
     public int i_activeScene = 0;
     public int i_menuState = 0;
+    public bool b_audioActive;
     // Start is called before the first frame update
     void Start()
     {
+        b_audioActive = true;
         i_menuState = 0;
         menu.SetActive(true);
         settings.SetActive(false);
@@ -65,6 +67,21 @@ public class SceneManage : MonoBehaviour
             menu.SetActive(false);
             settings.SetActive(true);
             i_menuState = 1;
+        }
+    }
+    public void disableAudio()
+    {
+        if (b_audioActive)
+        {
+            AudioListener.volume = 0.0f;
+            b_audioActive = false;
+            Debug.Log("Audio was disabled by the disableAudio() function within the EventSystem SceneManage Script");
+        }
+        else if (!b_audioActive)
+        {
+            AudioListener.volume = 1.0f;
+            b_audioActive = true;
+            Debug.Log("Audio was enabled by the disableAudio() function within the EventSystem SceneManage Script");
         }
     }
 }
