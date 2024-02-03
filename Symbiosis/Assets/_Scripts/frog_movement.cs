@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -18,7 +19,6 @@ public class frog_movement : MonoBehaviour
     [SerializeField] private bool b_grounded = false;
     [SerializeField] private bool b_jump = false;
     [SerializeField] private BoxCollider2D b_collider;
-
     private void Start()
     {
         b_collider = GetComponent<BoxCollider2D>();
@@ -60,6 +60,12 @@ public class frog_movement : MonoBehaviour
             }
         }
 
+        float ray_distance = b_collider.size.y / 2.0f;
+        RaycastHit2D[] hits = new RaycastHit2D[1];
+        int col_count = b_collider.Raycast(Vector2.down, hits, ray_distance);
+        if (col_count > 0)  b_grounded = true;
+        else b_grounded = false;
+
         //vertical speed control
         if (!b_jump)
         {
@@ -81,15 +87,22 @@ public class frog_movement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Mid-Ground"))
+        float ray_distance = b_collider.size.y / 2.0f + 0.01f;
+        RaycastHit2D[] hits = new RaycastHit2D[1];
+        
+        int col_count = b_collider.Raycast(Vector2.down, hits, ray_distance);
+        if (col_count > 0)
         {
-            //int hit_count = Raycast(transform.position, Vector2.down);
             b_grounded = true;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Mid-Ground"))
+        float ray_distance = b_collider.size.y / 2.0f;
+        RaycastHit2D[] hits = new RaycastHit2D[1];
+
+        int col_count = b_collider.Raycast(Vector2.down, hits, ray_distance);
+        if (col_count > 0)
         {
             b_grounded = false;
         }
