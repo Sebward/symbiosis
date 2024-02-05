@@ -13730,7 +13730,6 @@ GameObject:
   - component: {fileID: 1660385292}
   - component: {fileID: 1660385291}
   - component: {fileID: 1660385293}
-  - component: {fileID: 1660385289}
   - component: {fileID: 1660385288}
   m_Layer: 5
   m_Name: Square (1)
@@ -13751,41 +13750,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffb2d2283cf72814599c71d34c29b42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  f_move_speed: 0.2
+  f_move_speed: 3
   f_top_speed: 8
-  f_move_damper: 0.1
-  f_jump_speed: 10
-  f_g: 9.8
+  f_move_damper: 4
+  f_jump_speed: 15
+  f_g: 0.98
   f_horizontal_velocity: 0
   f_vertical_velocity: 0
   b_grounded: 1
---- !u!50 &1660385289
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660385287}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  b_jump: 0
+  b_collider: {fileID: 0}
 --- !u!212 &1660385291
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13846,7 +13820,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1660385287}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6707, y: -3.2, z: -1}
+  m_LocalPosition: {x: -0.6707, y: -3.13, z: -1}
   m_LocalScale: {x: 0.2395174, y: 0.2395174, z: 0.2395174}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13886,7 +13860,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.16170907}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
