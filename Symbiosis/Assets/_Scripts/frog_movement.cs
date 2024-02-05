@@ -83,10 +83,11 @@ public class frog_movement : MonoBehaviour
         RaycastHit2D[] result = new RaycastHit2D[10];
         ContactFilter2D contactFilter = new ContactFilter2D();
         contactFilter.useTriggers = false;
-        int hit_h_lu = Physics2D.Raycast(lu, Vector2.left, contactFilter, result, 0.1f);
-        int hit_h_ld = Physics2D.Raycast(ld, Vector2.left, contactFilter, result, 0.1f);
-        int hit_h_ru = Physics2D.Raycast(ru, Vector2.right, contactFilter, result, 0.1f);
-        int hit_h_rd = Physics2D.Raycast(rd, Vector2.right, contactFilter, result, 0.1f);
+        float h_raycast_distance = Mathf.Abs(f_horizontal_velocity * Time.deltaTime) > 0 ? Mathf.Abs(f_horizontal_velocity * Time.deltaTime) : 0.1f;
+        int hit_h_lu = Physics2D.Raycast(lu, Vector2.left, contactFilter, result, h_raycast_distance);
+        int hit_h_ld = Physics2D.Raycast(ld, Vector2.left, contactFilter, result, h_raycast_distance);
+        int hit_h_ru = Physics2D.Raycast(ru, Vector2.right, contactFilter, result, h_raycast_distance);
+        int hit_h_rd = Physics2D.Raycast(rd, Vector2.right, contactFilter, result, h_raycast_distance);
         int h_l_hit = (hit_h_lu - 1) + (hit_h_ld - 1);
         int h_r_hit = (hit_h_ru - 1) + (hit_h_rd - 1);
 
@@ -110,7 +111,7 @@ public class frog_movement : MonoBehaviour
         }
         if (v_u_hit > 0)
         {
-            //f_horizontal_velocity = (f_horizontal_velocity > 0) ? f_horizontal_velocity : 0;
+            f_vertical_velocity = (f_vertical_velocity > 0) ? -0.8f*f_vertical_velocity : 0; f_horizontal_velocity = (f_horizontal_velocity > 0) ? f_horizontal_velocity : 0;
             Debug.Log(v_u_hit);
         }
 
