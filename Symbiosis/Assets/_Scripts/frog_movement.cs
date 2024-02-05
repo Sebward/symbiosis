@@ -17,7 +17,6 @@ public class frog_movement : MonoBehaviour
     [SerializeField] private float f_horizontal_velocity = 0.0f;
     [SerializeField] private float f_vertical_velocity = 0.0f;
     [SerializeField] private bool b_grounded = false;
-    [SerializeField] private bool b_jump = false;
     [SerializeField] private BoxCollider2D b_collider;
     //[SerializeField] private bool b_h_hit = false;
 
@@ -91,10 +90,11 @@ public class frog_movement : MonoBehaviour
         int h_l_hit = (hit_h_lu - 1) + (hit_h_ld - 1);
         int h_r_hit = (hit_h_ru - 1) + (hit_h_rd - 1);
 
+        float v_raycast_distance = Mathf.Abs(f_vertical_velocity * Time.deltaTime) > 0 ? Mathf.Abs(f_vertical_velocity * Time.deltaTime) : 0.1f;
         int hit_v_lu = Physics2D.Raycast(lu, Vector2.up, contactFilter, result, 0.1f);
-        int hit_v_ld = Physics2D.Raycast(ld, Vector2.down, contactFilter, result, 0.1f/*Mathf.Abs(f_vertical_velocity * Time.deltaTime)*/ );
+        int hit_v_ld = Physics2D.Raycast(ld, Vector2.down, contactFilter, result, v_raycast_distance);
         int hit_v_ru = Physics2D.Raycast(ru, Vector2.up, contactFilter, result, 0.1f);
-        int hit_v_rd = Physics2D.Raycast(rd, Vector2.down, contactFilter, result, 0.1f/*Mathf.Abs(f_vertical_velocity * Time.deltaTime)*/ );
+        int hit_v_rd = Physics2D.Raycast(rd, Vector2.down, contactFilter, result, v_raycast_distance);
         int v_u_hit = (hit_v_lu - 1) + (hit_v_ru - 1);
         int v_d_hit = (hit_v_ld - 1) + (hit_v_rd - 1);
         // If it hits something...
