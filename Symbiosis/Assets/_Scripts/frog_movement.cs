@@ -75,10 +75,11 @@ public class frog_movement : MonoBehaviour
         //Vector3 ru = new Vector3(b_center.x + b_extents.x, b_center.y + b_extents.y, transform.position.z);
         //Vector3 rd = new Vector3(b_center.x + b_extents.x, b_center.y - b_extents.y, transform.position.z);
 
-        Vector3 lu = new Vector3(b_center.x - b_extents.x * 0.8f, b_center.y + b_extents.y * 0.8f, transform.position.z);
-        Vector3 ld = new Vector3(b_center.x - b_extents.x * 0.8f, b_center.y - b_extents.y * 0.8f, transform.position.z);
-        Vector3 ru = new Vector3(b_center.x + b_extents.x * 0.8f, b_center.y + b_extents.y * 0.8f, transform.position.z);
-        Vector3 rd = new Vector3(b_center.x + b_extents.x * 0.8f, b_center.y - b_extents.y * 0.8f, transform.position.z);
+        float margin = 0.95f;
+        Vector3 lu = new Vector3(b_center.x - b_extents.x * margin, b_center.y + b_extents.y * margin, transform.position.z);
+        Vector3 ld = new Vector3(b_center.x - b_extents.x * margin, b_center.y - b_extents.y * margin, transform.position.z);
+        Vector3 ru = new Vector3(b_center.x + b_extents.x * margin, b_center.y + b_extents.y * margin, transform.position.z);
+        Vector3 rd = new Vector3(b_center.x + b_extents.x * margin, b_center.y - b_extents.y * margin, transform.position.z);
 
         RaycastHit2D[] result = new RaycastHit2D[10];
         ContactFilter2D contactFilter = new ContactFilter2D();
@@ -111,7 +112,7 @@ public class frog_movement : MonoBehaviour
         }
         if (v_u_hit > 0)
         {
-            f_vertical_velocity = (f_vertical_velocity > 0) ? -0.8f*f_vertical_velocity : 0; f_horizontal_velocity = (f_horizontal_velocity > 0) ? f_horizontal_velocity : 0;
+            f_vertical_velocity = (f_vertical_velocity > 0) ? -0.8f*f_vertical_velocity : f_vertical_velocity; 
             Debug.Log(v_u_hit);
         }
 
