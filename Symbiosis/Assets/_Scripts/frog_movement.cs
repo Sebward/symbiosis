@@ -58,7 +58,7 @@ public class frog_movement : MonoBehaviour
 
         //Vertical
         //input
-        if (Input.GetKeyDown(KeyCode.Space) && b_grounded){
+        if (Input.GetKeyDown(KeyCode.Space) /*&& b_grounded */){
             f_vertical_velocity = f_jump_speed;
         }
         if (!b_grounded)
@@ -75,6 +75,12 @@ public class frog_movement : MonoBehaviour
         Vector3 ld = new Vector3(b_center.x - b_extents.x, b_center.y - b_extents.y, transform.position.z);
         Vector3 ru = new Vector3(b_center.x + b_extents.x, b_center.y + b_extents.y, transform.position.z);
         Vector3 rd = new Vector3(b_center.x + b_extents.x, b_center.y - b_extents.y, transform.position.z);
+
+        //Vector3 lu = new Vector3(b_center.x - b_extents.x * 0.8f, b_center.y + b_extents.y * 0.8f, transform.position.z);
+        //Vector3 ld = new Vector3(b_center.x - b_extents.x * 0.8f, b_center.y - b_extents.y * 0.8f, transform.position.z);
+        //Vector3 ru = new Vector3(b_center.x + b_extents.x * 0.8f, b_center.y + b_extents.y * 0.8f, transform.position.z);
+        //Vector3 rd = new Vector3(b_center.x + b_extents.x * 0.8f, b_center.y - b_extents.y * 0.8f, transform.position.z);
+
         RaycastHit2D[] result = new RaycastHit2D[10];
         ContactFilter2D contactFilter = new ContactFilter2D();
         contactFilter.useTriggers = false;
@@ -86,9 +92,9 @@ public class frog_movement : MonoBehaviour
         int h_r_hit = (hit_h_ru - 1) + (hit_h_rd - 1);
 
         int hit_v_lu = Physics2D.Raycast(lu, Vector2.up, contactFilter, result, 0.1f);
-        int hit_v_ld = Physics2D.Raycast(ld, Vector2.down, contactFilter, result, 0.1f);
+        int hit_v_ld = Physics2D.Raycast(ld, Vector2.down, contactFilter, result, 0.1f/*Mathf.Abs(f_vertical_velocity * Time.deltaTime)*/ );
         int hit_v_ru = Physics2D.Raycast(ru, Vector2.up, contactFilter, result, 0.1f);
-        int hit_v_rd = Physics2D.Raycast(rd, Vector2.down, contactFilter, result, 0.1f);
+        int hit_v_rd = Physics2D.Raycast(rd, Vector2.down, contactFilter, result, 0.1f/*Mathf.Abs(f_vertical_velocity * Time.deltaTime)*/ );
         int v_u_hit = (hit_v_lu - 1) + (hit_v_ru - 1);
         int v_d_hit = (hit_v_ld - 1) + (hit_v_rd - 1);
         // If it hits something...
@@ -113,12 +119,15 @@ public class frog_movement : MonoBehaviour
             f_vertical_velocity = (f_vertical_velocity > 0) ? f_vertical_velocity : 0;
             b_grounded = true;
             Debug.Log("v_d_hit: " + v_d_hit);
+            for (int i = 0; i < 2; i++)
+            {
+                Debug.Log("number " + i + " : " + " : "+ result[i].transform.name + result[i].point);
+            }
         }
         else b_grounded = false;
 
 
         //vertical speed control
-
 
         transform.position += new Vector3(f_horizontal_velocity * Time.deltaTime, f_vertical_velocity * Time.deltaTime, 0);
         
