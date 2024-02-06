@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 
@@ -25,7 +23,6 @@ public class frog_movement : MonoBehaviour
     private void Start()
     {
         b_collider = GetComponent<BoxCollider2D>();
-        if (b_collider == null) b_collider = transform.AddComponent<BoxCollider2D>();
     }
     void Update()
     {
@@ -102,28 +99,43 @@ public class frog_movement : MonoBehaviour
         int hit_v_rd = Physics2D.Raycast(rd, Vector2.down, contactFilter, result, v_raycast_distance);
         int v_u_hit = (hit_v_lu - 1) + (hit_v_ru - 1);
         int v_d_hit = (hit_v_ld - 1) + (hit_v_rd - 1);
-
         // If it hits something...
         if (h_l_hit > 0)
         {
             f_horizontal_velocity = (f_horizontal_velocity > 0) ? f_horizontal_velocity : 0;
+            Debug.Log(h_l_hit);
         }
         if (h_r_hit > 0)
         {
             f_horizontal_velocity = (f_horizontal_velocity < 0) ? f_horizontal_velocity : 0;
+            Debug.Log(h_l_hit);
         }
         if (v_u_hit > 0)
         {
             f_vertical_velocity = (f_vertical_velocity > 0) ? -0.8f*f_vertical_velocity : f_vertical_velocity; 
+            Debug.Log(v_u_hit);
         }
 
         if (v_d_hit > 0)
         {
             f_vertical_velocity = (f_vertical_velocity > 0) ? f_vertical_velocity : 0;
             b_grounded = true;
+            Debug.Log("v_d_hit: " + v_d_hit);
+            for (int i = 0; i < 2; i++)
+            {
+                Debug.Log("number " + i + " : " + " : "+ result[i].transform.name + result[i].point);
+            }
         }
         else b_grounded = false;
 
-        transform.position += new Vector3(f_horizontal_velocity * Time.deltaTime, f_vertical_velocity * Time.deltaTime, 0);      
+
+        //vertical speed control
+
+        transform.position += new Vector3(f_horizontal_velocity * Time.deltaTime, f_vertical_velocity * Time.deltaTime, 0);
+        
+        //Debug.Log("final: " + f_horizontal_velocity);
+        
     }
+
+    
 }
