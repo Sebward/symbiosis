@@ -103,28 +103,28 @@ public class frog_movement : MonoBehaviour
         if (h_l_hit > 0)
         {
             f_horizontal_velocity = (f_horizontal_velocity > 0) ? f_horizontal_velocity : 0;
-            Debug.Log(h_l_hit);
+            //Debug.Log(h_l_hit);
         }
         if (h_r_hit > 0)
         {
             f_horizontal_velocity = (f_horizontal_velocity < 0) ? f_horizontal_velocity : 0;
-            Debug.Log(h_l_hit);
+            //Debug.Log(h_l_hit);
         }
         if (v_u_hit > 0)
         {
             f_vertical_velocity = (f_vertical_velocity > 0) ? -0.8f*f_vertical_velocity : f_vertical_velocity; 
-            Debug.Log(v_u_hit);
+            //Debug.Log(v_u_hit);
         }
 
         if (v_d_hit > 0)
         {
             f_vertical_velocity = (f_vertical_velocity > 0) ? f_vertical_velocity : 0;
             b_grounded = true;
-            Debug.Log("v_d_hit: " + v_d_hit);
-            for (int i = 0; i < 2; i++)
-            {
-                Debug.Log("number " + i + " : " + " : "+ result[i].transform.name + result[i].point);
-            }
+            //Debug.Log("v_d_hit: " + v_d_hit);
+            //for (int i = 0; i < 2; i++)
+            //{
+            //    Debug.Log("number " + i + " : " + " : "+ result[i].transform.name + result[i].point);
+            //}
         }
         else b_grounded = false;
 

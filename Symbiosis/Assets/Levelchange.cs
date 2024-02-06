@@ -16,8 +16,10 @@ public class Levelchange : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Frog touched");
         if (collision.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Frog got tp'd");
             Player.transform.position = v_Level_2_Start;
         }
     }

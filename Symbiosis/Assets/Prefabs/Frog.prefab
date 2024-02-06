@@ -141,17 +141,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1279723585276597651}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffb2d2283cf72814599c71d34c29b42e, type: 3}
+  m_Script: {fileID: 11500000, guid: 771ae56a54250ae429525dbd3e300c95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  f_move_speed: 3
+  f_move_speed: 0.2
   f_top_speed: 8
-  f_move_damper: 4
-  f_jump_speed: 15
-  f_g: 0.98
+  f_move_damper: 1
+  f_jump_speed: 10
+  f_g: 9.8
   f_horizontal_velocity: 0
   f_vertical_velocity: 0
-  b_grounded: 1
+  b_grounded: 0
   b_collider: {fileID: 0}
 --- !u!114 &3971029980491585444
 MonoBehaviour:
