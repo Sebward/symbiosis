@@ -1,70 +1,69 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.Build.Content;
-using UnityEditor.Build.Reporting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Tilemaps;
 
 public class SceneManage : MonoBehaviour
 {
     public GameObject menu;
     public GameObject settings;
-    public int i_activeScene = 0;
-    public int i_menuState = 0;
-    // Start is called before the first frame update
+    public int i_buildIndex;
+    public int i_currentscreen;
+    public bool b_audioState;
     void Start()
     {
-        i_menuState = 0;
+        b_audioState = true;
+        i_buildIndex = SceneManager.GetActiveScene().buildIndex;
+        i_currentscreen = 0;
         menu.SetActive(true);
-        settings.SetActive(false);
+        settings.SetActive(false); 
     }
-
-    // Update is called once per frame
-    void Update()
+    public void SetScene(int SceneIndex)
     {
-        i_activeScene = SceneManager.GetActiveScene().buildIndex;
-    }
-    public void SetScene(int targetScene)
-    {
-        if (i_activeScene == 0)
+        if (SceneIndex != i_currentscreen)
         {
-            SceneManager.LoadScene(targetScene);
+            SceneManager.LoadScene(SceneIndex);
         }
     }
 
-    public void Quit(string s_currentEnviorment)
+    public void Quit()
     {
-        if (s_currentEnviorment == "E")
-        {
-            EditorApplication.ExitPlaymode();
-        }
-        if (s_currentEnviorment == "B")
-        {
-            Application.Quit();
-        }
-    }
-
-    public void back()
-    {
-        if (i_menuState == 1)
-        {
-            menu.SetActive(true);
-            settings.SetActive(false);
-            i_menuState = 0;
-        }
+        Application.Quit();
     }
 
     public void Settings()
     {
-        if (i_menuState == 0)
+        if (i_currentscreen == 0)
         {
             menu.SetActive(false);
             settings.SetActive(true);
-            i_menuState = 1;
+            i_currentscreen = 1;
+        }
+    }
+
+    public void Back()
+    {
+        if (i_currentscreen == 1)
+        {
+            menu.SetActive(true);
+            settings.SetActive(false);
+            i_currentscreen = 0;
+        }
+    }
+
+    public void SetAudio()
+    {
+        if (b_audioState == false)
+        {
+            AudioListener.volume = 1.0f;
+            b_audioState = true;
+        }
+
+        else if (b_audioState == true)
+        {
+            AudioListener.volume = 0.0f;
+            b_audioState = false;
         }
     }
 }

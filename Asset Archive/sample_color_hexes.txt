@@ -1,0 +1,25 @@
+Random Colors
+#0c52e8
+#9e125b
+#ec7799
+#b6a865
+#2229fd
+Red
+#56382e
+#965d45
+#c87a6a
+#ea9f9e
+#ef938f
+Green
+#6dcd18
+#1ea432
+#50be6c
+#aecbb7
+#78ab21
+Blue
+#4b5de2
+#35359c
+#4e5de4
+#1d41c3
+#263045
+
