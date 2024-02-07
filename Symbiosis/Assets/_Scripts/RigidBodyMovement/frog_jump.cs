@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class frog_jump : MonoBehaviour
 {
-    public float jump_force = 10.0f;
+    public float jump_force = 20.0f;
     [SerializeField] private bool on_ground = false;
     [SerializeField] private float charge_time = 0.0f;
     private Rigidbody2D rb;
@@ -14,6 +14,7 @@ public class frog_jump : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         if (rb == null ) rb = transform.AddComponent<Rigidbody2D>();
+        rb.freezeRotation = true;
         rb.gravityScale = 2.0f;
     }
     void Update()
@@ -37,12 +38,12 @@ public class frog_jump : MonoBehaviour
                 Debug.Log("JUMP: " + charge_time);
                 if (jump_left)
                 {
-                    Vector2 jump_impulse = (Vector2.up + Vector2.left).normalized * jump_force * charge_time;
+                    Vector2 jump_impulse = (Vector2.up * 1.7f + Vector2.left).normalized * jump_force * charge_time;
                     rb.velocity = jump_impulse;
                 }
                 else
                 {
-                    Vector2 jump_impulse = (Vector2.up + Vector2.right).normalized * jump_force * charge_time;
+                    Vector2 jump_impulse = (Vector2.up * 1.7f + Vector2.right).normalized * jump_force * charge_time;
                     rb.velocity = jump_impulse;
                 }
 
