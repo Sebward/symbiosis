@@ -11568,11 +11568,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7536871125669306795, guid: 3b54e1aee6de48847b494aa3139e5874, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.76
+      value: -4.36
       objectReference: {fileID: 0}
     - target: {fileID: 7536871125669306795, guid: 3b54e1aee6de48847b494aa3139e5874, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.69
+      value: -3.04
       objectReference: {fileID: 0}
     - target: {fileID: 7536871125669306795, guid: 3b54e1aee6de48847b494aa3139e5874, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11625,7 +11625,7 @@ GameObject:
   - component: {fileID: 1386928768}
   m_Layer: 0
   m_Name: Spider
-  m_TagString: Untagged
+  m_TagString: Spider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15845,11 +15845,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7238722033263480633, guid: 0c91abe4561003f468538b25473deaa7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.53
+      value: -1.22
       objectReference: {fileID: 0}
     - target: {fileID: 7238722033263480633, guid: 0c91abe4561003f468538b25473deaa7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.48
+      value: -2.18
       objectReference: {fileID: 0}
     - target: {fileID: 7238722033263480633, guid: 0c91abe4561003f468538b25473deaa7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15886,7 +15886,7 @@ PrefabInstance:
     - target: {fileID: 9000099364562459016, guid: 0c91abe4561003f468538b25473deaa7, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 97c354d99301e4540bfca88eb5122b17, type: 3}
+      objectReference: {fileID: 21300000, guid: cf5641bd9ae3876488ceb17ffd8ff7e2, type: 3}
     - target: {fileID: 9000099364562459016, guid: 0c91abe4561003f468538b25473deaa7, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
