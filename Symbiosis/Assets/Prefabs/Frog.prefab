@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7536871125669306795}
   - component: {fileID: 42604317907481995}
   - component: {fileID: 5991565113092653307}
-  - component: {fileID: 8315453683040256918}
   - component: {fileID: 3971029980491585444}
+  - component: {fileID: 254570217184476312}
   m_Layer: 5
   m_Name: Frog
   m_TagString: Player
@@ -132,27 +132,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.91, y: 2.9765816}
   m_EdgeRadius: 0
---- !u!114 &8315453683040256918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279723585276597651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 771ae56a54250ae429525dbd3e300c95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  f_move_speed: 0.2
-  f_top_speed: 8
-  f_move_damper: 1
-  f_jump_speed: 10
-  f_g: 9.8
-  f_horizontal_velocity: 0
-  f_vertical_velocity: 0
-  b_grounded: 0
-  b_collider: {fileID: 0}
 --- !u!114 &3971029980491585444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,3 +144,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfb6ca4c34c68344586b7dde85aba40a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &254570217184476312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279723585276597651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5924c75900f1b954aa19c46113a3ebea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jump_force: 10
+  on_ground: 0
+  charge_time: 0
+  jump_left: 0

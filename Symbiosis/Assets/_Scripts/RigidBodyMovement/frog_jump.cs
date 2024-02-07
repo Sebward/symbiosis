@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class frog_jump : MonoBehaviour
@@ -12,6 +13,7 @@ public class frog_jump : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        if (rb == null ) rb = transform.AddComponent<Rigidbody2D>();
         rb.gravityScale = 2.0f;
     }
     void Update()
