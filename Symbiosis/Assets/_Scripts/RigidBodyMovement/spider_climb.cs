@@ -38,9 +38,10 @@ public class spider_climb : MonoBehaviour
     }
     void Update()
     {
+        int isme = 1;
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            if ((hit_left > 0 || hit_right > 0) && hit_up <= 0)
+            if ((hit_left > isme || hit_right > isme) && hit_up <= isme)
             {
                 speedY = 15.0f;
             }
@@ -51,7 +52,7 @@ public class spider_climb : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            if ((hit_left > 0 || hit_right > 0) && hit_down <= 0)
+            if ((hit_left > isme || hit_right > isme) && hit_down <= isme)
             {
                 speedY = -15.0f;
             }
@@ -67,7 +68,7 @@ public class spider_climb : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            if ((hit_up > 0 || hit_down > 0) && hit_left <= 0)
+            if ((hit_up > isme || hit_down > isme) && hit_left <= isme)
             {
                 speedX = -15.0f;
             }
@@ -79,7 +80,7 @@ public class spider_climb : MonoBehaviour
 
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            if ((hit_up > 0 || hit_down > 0) && hit_right <= 0)
+            if ((hit_up > isme || hit_down > isme) && hit_right <= isme)
             {
                 speedX = 15.0f;
             }
