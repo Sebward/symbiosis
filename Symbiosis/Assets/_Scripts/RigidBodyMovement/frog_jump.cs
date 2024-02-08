@@ -7,6 +7,7 @@ public class frog_jump : MonoBehaviour
 {
     public float jump_force = 20.0f;
     [SerializeField] private bool on_ground = false;
+    [SerializeField] private bool in_water = false;
     [SerializeField] private float charge_time = 0.0f;
     private Rigidbody2D rb;
     [SerializeField] private bool jump_left;
@@ -38,11 +39,13 @@ public class frog_jump : MonoBehaviour
                 Debug.Log("JUMP: " + charge_time);
                 if (jump_left)
                 {
+                    transform.position += Vector3.up * 0.1f;
                     Vector2 jump_impulse = (Vector2.up * 1.7f + Vector2.left).normalized * jump_force * charge_time;
                     rb.velocity = jump_impulse;
                 }
                 else
                 {
+                    transform.position += Vector3.up * 0.1f;
                     Vector2 jump_impulse = (Vector2.up * 1.7f + Vector2.right).normalized * jump_force * charge_time;
                     rb.velocity = jump_impulse;
                 }
@@ -58,8 +61,23 @@ public class frog_jump : MonoBehaviour
     {
         if (collision.transform.CompareTag("midground"))
         {
-            Debug.Log("Hit");
             on_ground = true;
         }
     }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("midground"))
+        {
+            on_ground = false;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Water"))
+        {
+            Debug.Log("Noya, look at here!");
+
+        }
+    }
+
 }
