@@ -25,7 +25,7 @@ public class frog_jump : MonoBehaviour
             charge_time += Time.deltaTime;
             jump_left = true;
         }
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
             charge_time += Time.deltaTime;
             jump_left = false;
@@ -53,8 +53,15 @@ public class frog_jump : MonoBehaviour
                 charge_time = 0.0f;
             }
         }
+        if(in_water)
+        {
+            rb.gravityScale = 0.8f;
+        }
+        else
+        {
+            rb.gravityScale = 2.0f;
+        }
 
-        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -71,12 +78,20 @@ public class frog_jump : MonoBehaviour
             on_ground = false;
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("Water"))
         {
-            Debug.Log("Noya, look at here!");
-
+            Debug.Log("in");
+            in_water = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Water"))
+        {
+            Debug.Log("out");
+            in_water = false;
         }
     }
 
