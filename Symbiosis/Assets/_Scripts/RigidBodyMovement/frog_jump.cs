@@ -33,10 +33,10 @@ public class frog_jump : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
         {
-            if (!on_ground) charge_time = 0;
-            else
+            if (on_ground || in_water) 
             {
-                Debug.Log("JUMP: " + charge_time);
+                //Debug.Log("JUMP: " + charge_time);
+                if (in_water) charge_time *= 0.5f;
                 if (jump_left)
                 {
                     transform.position += Vector3.up * 0.1f;
@@ -52,10 +52,15 @@ public class frog_jump : MonoBehaviour
 
                 charge_time = 0.0f;
             }
+            else
+            {
+                charge_time = 0;
+            }
         }
         if(in_water)
         {
             rb.gravityScale = 0.8f;
+            
         }
         else
         {
