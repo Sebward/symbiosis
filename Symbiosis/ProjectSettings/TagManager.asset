@@ -7,6 +7,8 @@ TagManager:
   - midground
   - Spider
   - Water
+  - Forward
+  - Backward
   layers:
   - Default
   - TransparentFX

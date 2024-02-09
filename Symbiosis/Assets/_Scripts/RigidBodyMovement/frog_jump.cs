@@ -24,11 +24,15 @@ public class frog_jump : MonoBehaviour
         {
             charge_time += Time.deltaTime;
             jump_left = true;
+            //Added for making the frog face opposite | THIS effects scale!! Change later
+            transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
         }
         else if (Input.GetKey(KeyCode.D))
         {
             charge_time += Time.deltaTime;
             jump_left = false;
+            //Added for making the frog face original way | THIS effects scale!! Change later
+            transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         }
 
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
