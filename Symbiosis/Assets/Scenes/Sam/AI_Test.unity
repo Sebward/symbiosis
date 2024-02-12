@@ -844,7 +844,7 @@ GameObject:
   - component: {fileID: 479879442}
   m_Layer: 0
   m_Name: Wasp_Sprite
-  m_TagString: Untagged
+  m_TagString: Wasp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65954,7 +65954,7 @@ GameObject:
   - component: {fileID: 903129191}
   m_Layer: 7
   m_Name: Water
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83648,7 +83648,7 @@ GameObject:
   - component: {fileID: 1714937656}
   m_Layer: 0
   m_Name: Wasp_Enemy
-  m_TagString: Untagged
+  m_TagString: Wasp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83668,7 +83668,9 @@ MonoBehaviour:
   target: {fileID: 1746854030}
   speed: 200
   nextWaypointDistance: 3
+  visionRange: 20
   enemyGFX: {fileID: 479879440}
+  wasp: {fileID: 1714937650}
 --- !u!4 &1714937652
 Transform:
   m_ObjectHideFlags: 0
@@ -83677,7 +83679,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714937650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.22, y: 0.97, z: 0.26296}
+  m_LocalPosition: {x: 8.68, y: 1.26, z: 0.26296}
   m_LocalScale: {x: 1.3624, y: 1.3624, z: 1.3624}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -83698,7 +83700,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.8
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -83774,7 +83776,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
 --- !u!1 &1717826301
 GameObject:
   m_ObjectHideFlags: 0

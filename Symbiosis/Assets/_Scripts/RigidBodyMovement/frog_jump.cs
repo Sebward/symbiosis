@@ -10,6 +10,12 @@ public class frog_jump : MonoBehaviour
     [SerializeField] private float charge_time = 0.0f;
     private Rigidbody2D rb;
     [SerializeField] private bool jump_left;
+
+
+    //Getting hit variables
+    private float invincibleTimer;
+    private bool invincible;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -51,7 +57,19 @@ public class frog_jump : MonoBehaviour
             }
         }
 
-        
+        Debug.Log("Invincible Timer:" + invincibleTimer);
+
+        if (invincible)
+        {
+            if(invincibleTimer < 0)
+            {
+                Debug.Log("No longer invincible");
+                invincible = false;
+                GetComponent<Renderer>().material.color = Color.white;
+                return;              
+            }
+            invincibleTimer -= Time.deltaTime;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -60,6 +78,18 @@ public class frog_jump : MonoBehaviour
         {
             Debug.Log("Hit");
             on_ground = true;
+        }
+        if (collision.transform.CompareTag("Wasp"))
+        {
+            if (!invincible)
+            {
+                Debug.Log("Hit by Wasp");
+                invincible = true;
+                invincibleTimer = 5;
+
+                //Drop eggs?
+                GetComponent<Renderer>().material.color = Color.red;
+            }        
         }
     }
 }

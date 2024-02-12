@@ -9,11 +9,15 @@ public class Wasp : MonoBehaviour
     public float speed = 200f;
     public float nextWaypointDistance = 3f;
 
+    [Tooltip("Range of blocks that the unit can see")]
+    public float visionRange;
+
     private Path path;
     private int currentWaypoint = 0;
     private bool reachedEndOfPath = false;
 
     public Transform enemyGFX;
+    public GameObject wasp;
 
     Seeker seeker;
     Rigidbody2D rb;
@@ -22,6 +26,9 @@ public class Wasp : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+
+        //Square range at start to make it easier to calculate later
+        visionRange = visionRange * visionRange;
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
         //seeker.StartPath(rb.position, target.position, OnPathComplete);
@@ -77,6 +84,15 @@ public class Wasp : MonoBehaviour
     private void UpdatePath()
     {
         if(seeker.IsDone())
-            seeker.StartPath(rb.position, target.position, OnPathComplete);
+        {
+            float distance = Mathf.Pow((target.transform.position.x - wasp.transform.position.x), 2)
+                                + Mathf.Pow((target.transform.position.y - wasp.transform.position.y), 2);
+
+            //Debug.Log("Distance " + distance + " Range: " + visionRange);
+            //Debug.Log(target.transform.position.x - wasp.transform.position.x);
+
+            if (distance < visionRange)
+                seeker.StartPath(rb.position, target.position, OnPathComplete);
+        }            
     }
 }
