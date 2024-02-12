@@ -20,7 +20,6 @@ public class Levelchange : MonoBehaviour
 
     void Start()
     {
-        level = 1;
         v_target_location = go_target_location.transform.position;
         Camera1.SetActive(true);
         Camera2.SetActive(false);
