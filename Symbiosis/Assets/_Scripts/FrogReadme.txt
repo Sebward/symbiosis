@@ -12,7 +12,7 @@ frog{
 tongue{
 	set up:
 	A seperate prefab called "FrogTongue"
-	in the script, the mousePos is the "Frog"'s child object: mousePos
+	in the script "frog_tongue", attach the mousePos, the mousePos is under the prefab "Frog"
 	the tongue's tag is set to "Tongue", different from the frog.
 	its polygon collider need to be set to "IsTrigger"
 

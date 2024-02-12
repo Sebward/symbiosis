@@ -23,6 +23,7 @@ public class frog_tongue : MonoBehaviour
 
         polygonCollider2D = GetComponent<PolygonCollider2D>();
         if (polygonCollider2D == null ) polygonCollider2D = gameObject.AddComponent<PolygonCollider2D>();
+        polygonCollider2D.isTrigger = true;
     }
     void Update()
     {
