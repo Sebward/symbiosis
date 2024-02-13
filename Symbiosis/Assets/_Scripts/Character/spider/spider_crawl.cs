@@ -53,12 +53,16 @@ public class spider_crawl : MonoBehaviour
             }
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("midground") || collision.transform.CompareTag("Frog"))
+        if (collision.transform.CompareTag("midground"))
         {
             can_move = true;
             //Debug.Log("Spider Move");
+        }
+        if (collision.transform.CompareTag("Frog"))
+        {
+            can_move = true;
         }
     }
 
@@ -68,6 +72,10 @@ public class spider_crawl : MonoBehaviour
         {
             can_move = false;
             //Debug.Log("Spider Don't Move");
+        }
+        if (collision.transform.CompareTag("Frog"))
+        {
+            can_move = false;
         }
     }
 
@@ -91,6 +99,10 @@ public class spider_crawl : MonoBehaviour
             can_crawl = true;
             rb.gravityScale = 0;
         }
+        if (collision.transform.CompareTag("Tongue"))
+        {
+            can_crawl = true;
+        }
         if (collision.transform.CompareTag("Water"))
         {
             Debug.Log("Spider dead!!!!");
@@ -104,7 +116,11 @@ public class spider_crawl : MonoBehaviour
     {
         if (collision.transform.CompareTag("SpiderCrawl"))
         {
-            //Debug.Log("Spider can't crawl");
+            can_crawl = false;
+            rb.gravityScale = 2;
+        }
+        if (collision.transform.CompareTag("Tongue"))
+        {
             can_crawl = false;
             rb.gravityScale = 2;
         }
