@@ -14,6 +14,7 @@ public class starManage : MonoBehaviour
     private bool b_isPaused = false;
     void Start()
     {
+        Time.timeScale = b_isPaused ? 0.0f : 1.0f;
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         i_screenState = 0;
         go_HUD.SetActive(true);
