@@ -119,6 +119,7 @@ public class frog_tongue : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         // Handle tongue collision with objects
+
     }
 }
 
