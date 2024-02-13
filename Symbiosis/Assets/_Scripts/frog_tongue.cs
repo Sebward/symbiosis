@@ -116,7 +116,7 @@ public class frog_tongue : MonoBehaviour
         tongueLine.SetPosition(1, tongueLine.GetPosition(0));
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         // Handle tongue collision with objects
 

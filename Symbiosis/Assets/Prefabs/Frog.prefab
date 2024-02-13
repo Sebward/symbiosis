@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8963188354399352892}
   m_Layer: 0
   m_Name: Frog
-  m_TagString: Untagged
+  m_TagString: Frog
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -242,7 +242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8717616293354484707}
   m_Layer: 0
-  m_Name: mouse
+  m_Name: mouth
   m_TagString: Tongue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
