@@ -13,9 +13,16 @@ public class spider_crawl : MonoBehaviour
     [SerializeField] private bool can_move = false;
     [SerializeField] private bool can_crawl = false;
     [SerializeField] private float h, v;
+
+    public Sprite[] sprites;
+    private SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null ) spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+        spriteRenderer.sprite = sprites[0];
+
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 2.0f;
         rb.freezeRotation = true;
@@ -29,6 +36,8 @@ public class spider_crawl : MonoBehaviour
         if (can_move || can_crawl)
         {
             h = move_speed * Input.GetAxis("Horizontal");
+            if (h < 0) spriteRenderer.flipX = true;
+            else spriteRenderer.flipX = false;
             v = move_speed * Input.GetAxis("Vertical");
             Vector2 move_vector = Vector2.right * h + Vector2.up * v;
             rb.velocity = move_vector;
@@ -98,6 +107,7 @@ public class spider_crawl : MonoBehaviour
             //Debug.Log("Spider can crawl");
             can_crawl = true;
             rb.gravityScale = 0;
+            spriteRenderer.sprite = sprites[1];
         }
         if (collision.transform.CompareTag("Tongue"))
         {
@@ -118,6 +128,7 @@ public class spider_crawl : MonoBehaviour
         {
             can_crawl = false;
             rb.gravityScale = 2;
+            spriteRenderer.sprite = sprites[0];
         }
         if (collision.transform.CompareTag("Tongue"))
         {
