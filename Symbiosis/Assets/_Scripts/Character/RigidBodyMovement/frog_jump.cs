@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class frog_jump : MonoBehaviour
 {
@@ -149,6 +150,8 @@ public class frog_jump : MonoBehaviour
 
                 //Drop eggs?
                 GetComponent<Renderer>().material.color = Color.red;
+                MyCoroutine();
+                Reload();
             }
         }
     }
@@ -169,6 +172,7 @@ public class frog_jump : MonoBehaviour
             Debug.Log("in");
             in_water = true;
             anime.setInWater();
+            
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -200,5 +204,19 @@ public class frog_jump : MonoBehaviour
     {
         box.offset = (jump_left ? offset4L : offset4R);
         box.size = size4;
+    }
+    public void Reload()
+    {
+        SceneManager.UnloadSceneAsync(1);
+
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
+    }
+    IEnumerator MyCoroutine()
+    {
+        Debug.Log("Restart Countdown Started");
+
+        yield return new WaitForSeconds(3);
+
+        Debug.Log("Restarting");
     }
 }
