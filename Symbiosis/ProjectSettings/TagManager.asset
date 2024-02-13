@@ -12,6 +12,7 @@ TagManager:
   - Tongue
   - Frog
   - SpiderCrawl
+  - Wasp
   layers:
   - Default
   - TransparentFX
@@ -19,8 +20,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Obstacle
+  - Water
   - 
   - 
   - 
