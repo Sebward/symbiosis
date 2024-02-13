@@ -58,7 +58,7 @@ public class spider_crawl : MonoBehaviour
         if (collision.transform.CompareTag("midground") || collision.transform.CompareTag("Frog"))
         {
             can_move = true;
-            Debug.Log("Spider Move");
+            //Debug.Log("Spider Move");
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -66,7 +66,7 @@ public class spider_crawl : MonoBehaviour
         if (collision.transform.CompareTag("midground") )
         {
             can_move = false;
-            Debug.Log("Spider Don't Move");
+            //Debug.Log("Spider Don't Move");
         }
     }
 

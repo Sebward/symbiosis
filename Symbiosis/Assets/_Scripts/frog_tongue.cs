@@ -16,14 +16,18 @@ public class frog_tongue : MonoBehaviour
     PolygonCollider2D polygonCollider2D;
     List<Vector2> colliderPoints = new List<Vector2>();
 
+    public Rigidbody2D frog_rb;
+
     private void Start()
     {
+        frog_rb = mousePos.GetComponentInParent<Rigidbody2D>();
+
         tongueLine = GetComponent<LineRenderer>();
         if (tongueLine == null ) tongueLine = transform.AddComponent<LineRenderer>();
 
         polygonCollider2D = GetComponent<PolygonCollider2D>();
         if (polygonCollider2D == null ) polygonCollider2D = gameObject.AddComponent<PolygonCollider2D>();
-        polygonCollider2D.isTrigger = true;
+        polygonCollider2D.isTrigger = false;
     }
     void Update()
     {
@@ -35,6 +39,7 @@ public class frog_tongue : MonoBehaviour
             targetPosition.z = transform.position.z;
             tongueOut = true;
             ExtendTongue();
+            //frog_rb.velocity = new Vector2(0,0);
         }
         else if (Input.GetMouseButtonDown(1))
         {
@@ -119,7 +124,7 @@ public class frog_tongue : MonoBehaviour
     void OnTriggerStay2D(Collider2D collision)
     {
         // Handle tongue collision with objects
-
+        Debug.Log("CCC");
     }
 }
 

@@ -75,14 +75,14 @@ public class frog_jump : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("midground"))
+        if (collision.transform.CompareTag("midground") || collision.transform.CompareTag("Spider"))
         {
             on_ground = true;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("midground"))
+        if (collision.transform.CompareTag("midground") || collision.transform.CompareTag("Spider"))
         {
             on_ground = false;
         }
