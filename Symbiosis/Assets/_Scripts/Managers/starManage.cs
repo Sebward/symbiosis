@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class starManage : MonoBehaviour
 {
     public GameObject go_HUD;
     public GameObject go_PauseMenu;
     public int i_screenState;
+    private int currentSceneIndex;
     private bool b_isPaused = false;
     void Start()
     {
+        Time.timeScale = b_isPaused ? 0.0f : 1.0f;
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         i_screenState = 0;
         go_HUD.SetActive(true);
         go_PauseMenu.SetActive(false);
@@ -51,7 +55,20 @@ public class starManage : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
 
+    public void Restart()
+    {
+        SceneManager.UnloadSceneAsync(currentSceneIndex);
+
+        SceneManager.LoadScene(currentSceneIndex, LoadSceneMode.Single);
+
+        TogglePause();
+    }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
     public void TogglePause()
     {

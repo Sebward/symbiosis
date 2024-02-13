@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 756998712f5977e4592a0ed0db0fa6be
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - sprite_renderer: {instanceID: 0}
+  - spider_walk: {fileID: 21300000, guid: cf5641bd9ae3876488ceb17ffd8ff7e2, type: 3}
+  - spider_wall: {fileID: 21300000, guid: 97c354d99301e4540bfca88eb5122b17, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

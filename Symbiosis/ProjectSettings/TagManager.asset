@@ -7,16 +7,22 @@ TagManager:
   - midground
   - Spider
   - Water
+  - Forward
+  - Backward
+  - Tongue
+  - Frog
+  - SpiderCrawl
+  - Wasp
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Obstacle
+  - Water
+  - Tongue
   - 
   - 
   - 
