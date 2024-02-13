@@ -95,4 +95,11 @@ public class Wasp : MonoBehaviour
                 seeker.StartPath(rb.position, target.position, OnPathComplete);
         }            
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Spider"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

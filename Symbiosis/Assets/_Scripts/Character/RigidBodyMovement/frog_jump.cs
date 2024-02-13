@@ -145,7 +145,7 @@ public class frog_jump : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("midground") || collision.transform.CompareTag("Spider"))
+        if (collision.transform.CompareTag("midground"))
         {
             on_ground = false;
             anime.playFrogJumpAnim();
