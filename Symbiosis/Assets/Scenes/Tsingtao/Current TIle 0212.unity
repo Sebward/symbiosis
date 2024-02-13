@@ -582,7 +582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 313151238184187995, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Frog
       objectReference: {fileID: 0}
     - target: {fileID: 4611446972831714770, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
       propertyPath: m_IsTrigger
@@ -90074,7 +90074,7 @@ GameObject:
   - component: {fileID: 1868937895}
   m_Layer: 0
   m_Name: Camera 1
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

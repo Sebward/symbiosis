@@ -27,7 +27,7 @@ public class frog_tongue : MonoBehaviour
 
         polygonCollider2D = GetComponent<PolygonCollider2D>();
         if (polygonCollider2D == null ) polygonCollider2D = gameObject.AddComponent<PolygonCollider2D>();
-        polygonCollider2D.isTrigger = false;
+        polygonCollider2D.isTrigger = true;
     }
     void Update()
     {
@@ -119,12 +119,6 @@ public class frog_tongue : MonoBehaviour
     void RetractTongue()
     {
         tongueLine.SetPosition(1, tongueLine.GetPosition(0));
-    }
-
-    void OnTriggerStay2D(Collider2D collision)
-    {
-        // Handle tongue collision with objects
-        Debug.Log("CCC");
     }
 }
 
