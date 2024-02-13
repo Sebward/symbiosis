@@ -11,6 +11,7 @@ public class spider_crawl : MonoBehaviour
     private Rigidbody2D rb;
     private CapsuleCollider2D capsule_collider;
     [SerializeField] private bool can_move = false;
+    [SerializeField] private bool can_crawl = false;
     [SerializeField] private float h, v;
     // Start is called before the first frame update
     void Start()
@@ -25,10 +26,10 @@ public class spider_crawl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (can_move)
+        if (can_move || can_crawl)
         {
-            float h = move_speed * Input.GetAxis("Horizontal");
-            float v = move_speed * Input.GetAxis("Vertical");
+            h = move_speed * Input.GetAxis("Horizontal");
+            v = move_speed * Input.GetAxis("Vertical");
             Vector2 move_vector = Vector2.right * h + Vector2.up * v;
             rb.velocity = move_vector;
         }
@@ -36,7 +37,7 @@ public class spider_crawl : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (can_move)
+        if (can_move && !can_crawl)
         {
             RaycastHit2D[] results = new RaycastHit2D[10];
             ContactFilter2D contactFilter = new ContactFilter2D();
@@ -66,6 +67,26 @@ public class spider_crawl : MonoBehaviour
         {
             can_move = false;
             Debug.Log("Spider Don't Move");
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("SpiderCrawl"))
+        {
+            Debug.Log("Spider can crawl");
+            can_crawl = true;
+            rb.gravityScale = 0;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("SpiderCrawl"))
+        {
+            Debug.Log("Spider can't crawl");
+            can_crawl = false;
+            rb.gravityScale = 2;
         }
     }
 }

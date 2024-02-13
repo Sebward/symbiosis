@@ -11,6 +11,7 @@ TagManager:
   - Backward
   - Tongue
   - Frog
+  - SpiderCrawl
   layers:
   - Default
   - TransparentFX
