@@ -817,30 +817,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Frog
       objectReference: {fileID: 0}
-    - target: {fileID: 313151238184187995, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3804822211531720622, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4241125798875604445, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4241125798875604445, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4611446972831714770, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5162676109028935753, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 7143902706105654094, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
       propertyPath: jumpPowerSlider
       value: 
@@ -8178,7 +8154,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1205064731}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -8571,19 +8547,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6195415345091041661, guid: 0c91abe4561003f468538b25473deaa7, type: 3}
       propertyPath: m_Size.x
-      value: 0.42271653
+      value: 1.0171828
       objectReference: {fileID: 0}
     - target: {fileID: 6195415345091041661, guid: 0c91abe4561003f468538b25473deaa7, type: 3}
       propertyPath: m_Size.y
-      value: 0.33603042
+      value: 0.8253538
       objectReference: {fileID: 0}
     - target: {fileID: 6195415345091041661, guid: 0c91abe4561003f468538b25473deaa7, type: 3}
       propertyPath: m_Offset.x
-      value: 0.08800094
+      value: -0.04747239
       objectReference: {fileID: 0}
     - target: {fileID: 6195415345091041661, guid: 0c91abe4561003f468538b25473deaa7, type: 3}
       propertyPath: m_Offset.y
-      value: -0.06408931
+      value: -0.22382611
       objectReference: {fileID: 0}
     - target: {fileID: 6195415345091041661, guid: 0c91abe4561003f468538b25473deaa7, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
