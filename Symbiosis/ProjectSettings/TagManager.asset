@@ -9,6 +9,9 @@ TagManager:
   - Water
   - Forward
   - Backward
+  - Tongue
+  - Frog
+  - SpiderCrawl
   layers:
   - Default
   - TransparentFX
