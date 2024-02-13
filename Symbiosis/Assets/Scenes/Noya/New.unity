@@ -514,41 +514,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Frog
       objectReference: {fileID: 0}
-    - target: {fileID: 4611446972831714770, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
-      propertyPath: m_Size.x
-      value: 0.980458
-      objectReference: {fileID: 0}
-    - target: {fileID: 4611446972831714770, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
-      propertyPath: m_Size.y
-      value: 0.46020147
-      objectReference: {fileID: 0}
-    - target: {fileID: 4611446972831714770, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.10247487
-      objectReference: {fileID: 0}
-    - target: {fileID: 4611446972831714770, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.40989923
-      objectReference: {fileID: 0}
     - target: {fileID: 8298649498567866761, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8298649498567866761, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8298649498567866761, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8298649498567866761, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8298649498567866761, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 10.1
       objectReference: {fileID: 0}
     - target: {fileID: 8298649498567866761, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
       propertyPath: m_LocalPosition.y

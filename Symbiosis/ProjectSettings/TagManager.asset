@@ -10,6 +10,7 @@ TagManager:
   - Forward
   - Backward
   - Tongue
+  - Frog
   layers:
   - Default
   - TransparentFX
