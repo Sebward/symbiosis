@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8963188354399352892}
   - component: {fileID: 7143902706105654094}
   - component: {fileID: 653098961834476972}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Frog
   m_TagString: Frog
   m_Icon: {fileID: 0}
@@ -115,9 +115,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &4611446972831714770
 BoxCollider2D:
@@ -134,7 +134,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5924c75900f1b954aa19c46113a3ebea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpPowerSlider: {fileID: 0}
   jump_force: 20
   on_ground: 0
   in_water: 0
@@ -242,7 +243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8717616293354484707}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: mouth
   m_TagString: Tongue
   m_Icon: {fileID: 0}
@@ -274,7 +275,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1588996315757122169}
   - component: {fileID: 2108026719400420928}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Frog direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}

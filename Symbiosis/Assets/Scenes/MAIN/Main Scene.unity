@@ -825,6 +825,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4241125798875604445, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4241125798875604445, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4611446972831714770, guid: 449efcd6e478ac0468b70f94ce073fc5, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 8
