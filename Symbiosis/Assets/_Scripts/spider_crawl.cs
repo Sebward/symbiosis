@@ -93,7 +93,7 @@ public class spider_crawl : MonoBehaviour
         }
         if (collision.transform.CompareTag("Water"))
         {
-            Debug.Log("Spider die!!!!");
+            Debug.Log("Spider dead!!!!");
             can_crawl = false;
             rb.gravityScale = 0.0f;
             rb.velocity = Vector2.zero;     
