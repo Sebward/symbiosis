@@ -61,6 +61,7 @@ public class spider_crawl : MonoBehaviour
             //Debug.Log("Spider Move");
         }
     }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("midground") )
@@ -70,13 +71,32 @@ public class spider_crawl : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Water"))
+        {
+            Debug.Log("Spider die!!!!");
+            can_crawl = false;
+            rb.gravityScale = 0.0f;
+            transform.position -= new Vector3(0, 1, 0);
+            rb.transform.localScale = new Vector3(2, -2, 2);
+            //rb.velocity = Vector2.zero;     
+        }
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("SpiderCrawl"))
         {
-            Debug.Log("Spider can crawl");
+            //Debug.Log("Spider can crawl");
             can_crawl = true;
             rb.gravityScale = 0;
+        }
+        if (collision.transform.CompareTag("Water"))
+        {
+            Debug.Log("Spider die!!!!");
+            can_crawl = false;
+            rb.gravityScale = 0.0f;
+            rb.velocity = Vector2.zero;     
         }
     }
 
@@ -84,7 +104,7 @@ public class spider_crawl : MonoBehaviour
     {
         if (collision.transform.CompareTag("SpiderCrawl"))
         {
-            Debug.Log("Spider can't crawl");
+            //Debug.Log("Spider can't crawl");
             can_crawl = false;
             rb.gravityScale = 2;
         }
