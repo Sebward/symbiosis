@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class frog_jump : MonoBehaviour
 {
+    public Slider jumpPowerSlider;
     public float jump_force = 20.0f;
     [SerializeField] private bool on_ground = false;
     [SerializeField] private bool in_water = false;
@@ -56,6 +59,7 @@ public class frog_jump : MonoBehaviour
         {
             charge_time += Time.deltaTime;
             jump_left = true;
+            jumpPowerSlider.value += .1f;
             //Fixed. ~QP
             //transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
         }
@@ -63,8 +67,13 @@ public class frog_jump : MonoBehaviour
         {
             charge_time += Time.deltaTime;
             jump_left = false;
+            jumpPowerSlider.value +=.1f;
             //Fixed. ~QP
             //transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        }
+        else
+        {
+            jumpPowerSlider.value -= .1f;
         }
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
         {
@@ -192,5 +201,4 @@ public class frog_jump : MonoBehaviour
         box.offset = (jump_left ? offset4L : offset4R);
         box.size = size4;
     }
-
 }
