@@ -18,6 +18,10 @@ public class frog_jump : MonoBehaviour
     //Box Collider for state checks and rescaling
     BoxCollider2D box;
 
+    //Getting hit variables
+    private float invincibleTimer;
+    private bool invincible;
+
     //values for collider rescale
     Vector2 offset1R = new Vector2(0.095f, -0.42f);
     Vector2 offset1L = new Vector2(-0.095f, -0.42f);
@@ -37,6 +41,7 @@ public class frog_jump : MonoBehaviour
 
     private void Start()
     {
+        invincible = false;
         rb = GetComponent<Rigidbody2D>();
         if (rb == null ) rb = transform.AddComponent<Rigidbody2D>();
         rb.freezeRotation = true;
@@ -99,6 +104,21 @@ public class frog_jump : MonoBehaviour
         }
         //flip the sprite about the x axis
         sprite.flipX = jump_left;
+
+
+        //Debug.Log("Invincible Timer:" + invincibleTimer);
+
+        if (invincible)
+        {
+            if (invincibleTimer < 0)
+            {
+                Debug.Log("No longer invincible");
+                invincible = false;
+                GetComponent<Renderer>().material.color = Color.white;
+                return;
+            }
+            invincibleTimer -= Time.deltaTime;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -109,6 +129,18 @@ public class frog_jump : MonoBehaviour
             anime.playFrogLandingAnim();
             anime.setFrogGround();
             Debug.Log("Landed on ground");
+        }
+        if (collision.transform.CompareTag("Wasp"))
+        {
+            if (!invincible)
+            {
+                Debug.Log("Hit by Wasp");
+                invincible = true;
+                invincibleTimer = 5;
+
+                //Drop eggs?
+                GetComponent<Renderer>().material.color = Color.red;
+            }
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
