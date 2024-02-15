@@ -74,7 +74,7 @@ public class frog_jump : MonoBehaviour
         }
         else
         {
-            jumpPowerSlider.value -= .1f;
+            jumpPowerSlider.value -= .5f;
         }
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
         {
