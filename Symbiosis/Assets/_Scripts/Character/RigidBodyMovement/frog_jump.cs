@@ -95,6 +95,8 @@ public class frog_jump : MonoBehaviour
                     rb.velocity = jump_impulse;
                 }
                 charge_time = 0.0f;
+                anime.playFrogJumpAnim();
+                Debug.Log("Midair");
             }
             else
             {
@@ -131,14 +133,23 @@ public class frog_jump : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("midground") || collision.transform.CompareTag("Spider"))
+        {
+            anime.playFrogLandingAnim();
+            anime.setFrogGround();
+            Debug.Log("Landed on ground");
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("midground") || collision.transform.CompareTag("Spider"))
         {
             on_ground = true;
-            anime.playFrogLandingAnim();
-            anime.setFrogGround();
-            Debug.Log("Landed on ground");
+            //anime.playFrogLandingAnim();
+            //anime.setFrogGround();
+            //Debug.Log("Landed on ground");
         }
         if (collision.transform.CompareTag("Wasp"))
         {
@@ -160,8 +171,9 @@ public class frog_jump : MonoBehaviour
         if (collision.transform.CompareTag("midground"))
         {
             on_ground = false;
-            anime.playFrogJumpAnim();
-            Debug.Log("Midair");
+            Debug.Log("in air");
+            //anime.playFrogJumpAnim();
+            //Debug.Log("Midair");
             //anime.setFrogMidair();
         }
     }
@@ -171,7 +183,7 @@ public class frog_jump : MonoBehaviour
         {
             Debug.Log("in");
             in_water = true;
-            anime.setInWater();
+            //anime.setInWater();
             
         }
     }
@@ -181,7 +193,7 @@ public class frog_jump : MonoBehaviour
         {
             Debug.Log("out");
             in_water = false;
-            anime.setOutWater();
+            //anime.setOutWater();
         }
     }
 
