@@ -17,6 +17,7 @@ public class frog_jump : MonoBehaviour
     [SerializeField] private bool jump_left;
     //Prefab components for handling visuals
     protected FrogAnimationHandler anime;
+    public bool finished_jump = false;
     protected SpriteRenderer sprite;
 
     //Box Collider for state checks and rescaling
@@ -80,6 +81,8 @@ public class frog_jump : MonoBehaviour
         {
             if (on_ground || in_water)
             {
+                anime.playFrogJumpAnim();
+                Debug.Log("Midair");
                 if (in_water) charge_time *= 0.5f;
                 //Debug.Log("JUMP: " + charge_time);
                 if (jump_left)
@@ -104,6 +107,14 @@ public class frog_jump : MonoBehaviour
             }
         }
         //else anime.playFrogIdleAnim();
+
+        if (!on_ground && rb.velocity.y < 0)
+        {
+            finished_jump = true;
+            //anime.playFrogLandingAnim();
+            //anime.setFrogGround();
+            //Debug.Log("Landing");
+        }
 
         if(in_water)
         {
@@ -137,8 +148,17 @@ public class frog_jump : MonoBehaviour
     {
         if (collision.transform.CompareTag("midground") || collision.transform.CompareTag("Spider"))
         {
-            anime.playFrogLandingAnim();
-            anime.setFrogGround();
+            if(finished_jump)
+            {
+                anime.playFrogLandingAnim();
+                anime.setFrogGround();
+                Debug.Log("Landing");
+                finished_jump = false;
+            }
+            //anime.playFrogLandingAnim();
+            //anime.setFrogGround();
+            //Debug.Log("Landing");
+            anime.playFrogIdleAnim();
             Debug.Log("Landed on ground");
         }
     }
