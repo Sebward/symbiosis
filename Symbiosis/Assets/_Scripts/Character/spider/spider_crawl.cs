@@ -97,7 +97,7 @@ public class spider_crawl : MonoBehaviour
             rb.gravityScale = 0.0f;
             transform.position -= new Vector3(0, 1, 0);
             rb.transform.localScale = new Vector3(2, -2, 2);
-            Application.Quit();
+            
             //rb.velocity = Vector2.zero;     
         }
     }
