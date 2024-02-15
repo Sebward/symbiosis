@@ -56,7 +56,7 @@ public class frog_jump : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             charge_time += Time.deltaTime;
             jump_left = true;
@@ -64,7 +64,7 @@ public class frog_jump : MonoBehaviour
             //Fixed. ~QP
             //transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
             charge_time += Time.deltaTime;
             jump_left = false;
@@ -76,7 +76,7 @@ public class frog_jump : MonoBehaviour
         {
             jumpPowerSlider.value -= .5f;
         }
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
         {
             if (on_ground || in_water)
             {
