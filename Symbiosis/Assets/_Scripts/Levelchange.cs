@@ -8,6 +8,7 @@ public class Levelchange : MonoBehaviour
 {
     public GameObject go_target_location;
     private Vector2 v_player_target_location;
+    public int Players_At_End = 0;
 
     public GameObject camera_target_location;
     private Vector2 v_camera_target_location;
@@ -24,10 +25,29 @@ public class Levelchange : MonoBehaviour
         players[0] = GameObject.FindWithTag("Frog");
         players[1] = GameObject.FindWithTag("Spider");
     }
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    //Debug.Log("Player touched loading zone");
+    //    if (other.gameObject.CompareTag("Spider") || other.gameObject.CompareTag("Frog")) GoTo(v_player_target_location, v_camera_target_location);
+    //}
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //Debug.Log("Player touched loading zone");
-        if (other.gameObject.CompareTag("Spider") || other.gameObject.CompareTag("Frog")) GoTo(v_player_target_location, v_camera_target_location);
+        if (other.gameObject.CompareTag("Spider") || other.gameObject.CompareTag("Frog"))
+        {
+            Players_At_End++;
+            if (Players_At_End == 2)
+            {
+                GoTo(v_player_target_location, v_camera_target_location);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Spider") || other.gameObject.CompareTag("Frog"))
+        {
+            Players_At_End--;
+        }
     }
     public void GoTo(Vector2 PlayerTargetLoc, Vector2 CameraTargetLoc)
     {
