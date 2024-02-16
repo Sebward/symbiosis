@@ -163,6 +163,19 @@ public class frog_jump : MonoBehaviour
             anime.playFrogIdleAnim();
             //Debug.Log("Landed on ground");
         }
+        if (collision.transform.CompareTag("BULB"))
+        {
+            if (!invincible)
+            {
+                Debug.Log("Hit");
+                invincible = true;
+                invincibleTimer = 5;
+
+                GetComponent<Renderer>().material.color = Color.red;
+                MyCoroutine();
+                Reload();
+            }
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -186,10 +199,6 @@ public class frog_jump : MonoBehaviour
                 MyCoroutine();
                 Reload();
             }
-        }
-        if (collision.transform.CompareTag("BULB"))
-        {
-
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
