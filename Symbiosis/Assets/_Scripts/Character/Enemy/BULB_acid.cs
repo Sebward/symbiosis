@@ -18,7 +18,7 @@ public class BULB_acid : MonoBehaviour
         timer += Time.deltaTime;
         if(timer > 2)
         {
-            Debug.Log("New");
+            //Debug.Log("New");
             Instantiate(bulb_shoot,transform.position,Quaternion.identity);
             timer = 0;
         }

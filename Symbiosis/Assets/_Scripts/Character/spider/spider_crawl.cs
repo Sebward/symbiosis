@@ -16,6 +16,7 @@ public class spider_crawl : MonoBehaviour
 
     public Sprite[] sprites;
     private SpriteRenderer spriteRenderer;
+    public bool dead = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,12 @@ public class spider_crawl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dead)
+        {
+            can_move = false;
+            can_crawl = false;
+            rb.isKinematic = true;
+        }
         if (can_move || can_crawl)
         {
             h = move_speed * Input.GetAxis("Horizontal");
@@ -42,7 +49,7 @@ public class spider_crawl : MonoBehaviour
             Vector2 move_vector = Vector2.right * h + Vector2.up * v;
             rb.velocity = move_vector;
         }
-
+        
     }
     private void FixedUpdate()
     {
@@ -62,17 +69,17 @@ public class spider_crawl : MonoBehaviour
             }
         }
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.CompareTag("BULB"))
-        {
-            Debug.Log("Spider die!!!!");
-            can_crawl = false;
-            rb.gravityScale = 0.0f;
-            transform.position -= new Vector3(0, 1, 0);
-            rb.transform.localScale = new Vector3(2, -2, 2);
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.transform.CompareTag("BULB"))
+    //    {
+    //        Debug.Log("Spider die!!!!");
+    //        can_crawl = false;
+    //        rb.gravityScale = 0.0f;
+    //        transform.position -= new Vector3(0, 1, 0);
+    //        rb.transform.localScale = new Vector3(2, -2, 2);
+    //    }
+    //}
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("midground"))
@@ -83,6 +90,19 @@ public class spider_crawl : MonoBehaviour
         if (collision.transform.CompareTag("Frog"))
         {
             can_move = true;
+        }
+        if (collision.transform.CompareTag("BULB"))
+        {
+            if (!dead)
+            {
+                Debug.Log("Spider die!!!!");
+                dead = true;
+                can_crawl = false;
+                rb.gravityScale = 0.0f;
+                rb.velocity = new Vector2(0, 0);
+                transform.position -= new Vector3(0, 0.5f, 0);
+                rb.transform.localScale = new Vector3(2, -2, 2);
+            }
         }
     }
 
@@ -104,6 +124,7 @@ public class spider_crawl : MonoBehaviour
         if (collision.transform.CompareTag("Water"))
         {
             Debug.Log("Spider die!!!!");
+            dead = true;
             can_crawl = false;
             rb.gravityScale = 0.0f;
             transform.position -= new Vector3(0, 1, 0);

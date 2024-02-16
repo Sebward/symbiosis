@@ -21,11 +21,15 @@ public class Bulb_Shoot : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(UnityEngine.Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!collision.transform.CompareTag("BULB"))
         {
-            Destroy(gameObject);
+            Invoke("kill_myself", 0.1f);
         }
+    }
+    private void kill_myself()
+    {
+        Destroy(gameObject);
     }
 }

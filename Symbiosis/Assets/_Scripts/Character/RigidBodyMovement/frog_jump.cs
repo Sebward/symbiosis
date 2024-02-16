@@ -161,7 +161,7 @@ public class frog_jump : MonoBehaviour
             //anime.setFrogGround();
             //Debug.Log("Landing");
             anime.playFrogIdleAnim();
-            Debug.Log("Landed on ground");
+            //Debug.Log("Landed on ground");
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
