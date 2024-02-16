@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3660336870131848112}
   - component: {fileID: 6195415345091041661}
   - component: {fileID: 6424607462848393120}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Spider
   m_TagString: Spider
   m_Icon: {fileID: 0}
@@ -31,7 +31,8 @@ Transform:
   m_LocalPosition: {x: 1.27, y: -2.08, z: -1}
   m_LocalScale: {x: 1.7, y: 1.7, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 995533745043953149}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -129,7 +130,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -146,8 +147,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07086256, y: -0.20246495}
-  m_Size: {x: 1.1382751, y: 0.87507224}
+  m_Offset: {x: -0.04747239, y: -0.22382611}
+  m_Size: {x: 1.0171828, y: 0.8253538}
   m_Direction: 1
 --- !u!114 &6424607462848393120
 MonoBehaviour:
@@ -170,3 +171,36 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: cf5641bd9ae3876488ceb17ffd8ff7e2, type: 3}
   - {fileID: 21300000, guid: 97c354d99301e4540bfca88eb5122b17, type: 3}
+  dead: 0
+  change_image_detect: {fileID: 995533745043953149}
+--- !u!1 &7428180464625278806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 995533745043953149}
+  m_Layer: 3
+  m_Name: change_image_point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &995533745043953149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7428180464625278806}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.045, y: -0.19, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7238722033263480633}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
