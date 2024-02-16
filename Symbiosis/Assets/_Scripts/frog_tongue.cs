@@ -59,20 +59,42 @@ public class frog_tongue : MonoBehaviour
     void ExtendTongue()
     {
         //collision detection
-        RaycastHit2D[] result = new RaycastHit2D[10];
+        //RaycastHit2D[] result = new RaycastHit2D[10];
+        //ContactFilter2D contactFilter = new ContactFilter2D();
+        //contactFilter.useTriggers = false;
+        //Vector3 raycastDir = (targetPosition - transform.position).normalized;
+        //int hit = Physics2D.Raycast(transform.position, targetPosition - transform.position, contactFilter, result, (targetPosition - transform.position).magnitude);
+        //if (hit > 1)
+        //{
+        //    RaycastHit2D raycastHit = Physics2D.Raycast(transform.position + raycastDir * 2, raycastDir);
+        //    targetPosition = raycastHit.point;
+        //    Debug.Log("hit: " + hit + " hit point: " + raycastHit.point);
+        //}
+
+        List<RaycastHit2D> hit_list = new List<RaycastHit2D>();
         ContactFilter2D contactFilter = new ContactFilter2D();
         contactFilter.useTriggers = false;
+        
         Vector3 raycastDir = (targetPosition - transform.position).normalized;
-        int hit = Physics2D.Raycast(transform.position, targetPosition - transform.position, contactFilter, result, (targetPosition - transform.position).magnitude);
-        if (hit > 1 )
+
+        int hits = Physics2D.Raycast(transform.position, raycastDir, contactFilter, hit_list, Mathf.Infinity);
+        Debug.Log("Hit numbers: " + hits );
+        Debug.Log("__________________");
+        foreach (RaycastHit2D hit in hit_list)
         {
-            RaycastHit2D raycastHit = Physics2D.Raycast(transform.position + raycastDir * 2, raycastDir);
-            targetPosition = raycastHit.point;
+            Debug.Log(hit.collider.gameObject.name);
         }
 
         tongueLine.positionCount = 2;
+        
         tongueLine.SetPosition(0, transform.position);
-        tongueLine.SetPosition(1, new Vector3(targetPosition.x, targetPosition.y, transform.position.z));
+        Vector3 tongue_target = hit_list[1].point;
+        tongue_target.z = transform.position.z;
+        tongueLine.SetPosition(1, tongue_target);
+
+        if (hit_list[1].transform.CompareTag("NonStick"))
+        Invoke("RetractTongue", 1f);
+
     }
     private void CreateTongueCollider()
     {

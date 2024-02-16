@@ -16,6 +16,9 @@ tongue{
 	the tongue's tag is set to "Tongue", different from the frog.
 	its polygon collider need to be set to "IsTrigger"
 
+	0215 update:
+	set the non-stick to the tag "NonStick"
+
 	notes:
 	the tongue needs one and only one camera, and the camera's tag need to be "MainCamera"
 	
