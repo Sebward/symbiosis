@@ -17,6 +17,7 @@ public class frog_jump : MonoBehaviour
     [SerializeField] private bool jump_left;
     //Prefab components for handling visuals
     protected FrogAnimationHandler anime;
+    public bool finished_jump = false;
     protected SpriteRenderer sprite;
 
     //Box Collider for state checks and rescaling
@@ -56,7 +57,7 @@ public class frog_jump : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             charge_time += Time.deltaTime;
             jump_left = true;
@@ -64,7 +65,7 @@ public class frog_jump : MonoBehaviour
             //Fixed. ~QP
             //transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
             charge_time += Time.deltaTime;
             jump_left = false;
@@ -74,12 +75,14 @@ public class frog_jump : MonoBehaviour
         }
         else
         {
-            jumpPowerSlider.value -= .1f;
+            jumpPowerSlider.value -= .3f;
         }
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
         {
             if (on_ground || in_water)
             {
+                anime.playFrogJumpAnim();
+                //Debug.Log("Midair");
                 if (in_water) charge_time *= 0.5f;
                 //Debug.Log("JUMP: " + charge_time);
                 if (jump_left)
@@ -95,6 +98,9 @@ public class frog_jump : MonoBehaviour
                     rb.velocity = jump_impulse;
                 }
                 charge_time = 0.0f;
+                //jumpPowerSlider.value = 0.0f;
+                anime.playFrogJumpAnim();
+                //Debug.Log("Midair");
             }
             else
             {
@@ -102,6 +108,14 @@ public class frog_jump : MonoBehaviour
             }
         }
         //else anime.playFrogIdleAnim();
+
+        if (!on_ground && rb.velocity.y < 0)
+        {
+            finished_jump = true;
+            //anime.playFrogLandingAnim();
+            //anime.setFrogGround();
+            //Debug.Log("Landing");
+        }
 
         if(in_water)
         {
@@ -122,7 +136,7 @@ public class frog_jump : MonoBehaviour
         {
             if (invincibleTimer < 0)
             {
-                Debug.Log("No longer invincible");
+                //Debug.Log("No longer invincible");
                 invincible = false;
                 GetComponent<Renderer>().material.color = Color.white;
                 return;
@@ -131,20 +145,52 @@ public class frog_jump : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("midground") || collision.transform.CompareTag("Spider"))
+        {
+            if(finished_jump)
+            {
+                anime.playFrogLandingAnim();
+                anime.setFrogGround();
+                //Debug.Log("Landing");
+                finished_jump = false;
+                jumpPowerSlider.value = 0;
+            }
+            //anime.playFrogLandingAnim();
+            //anime.setFrogGround();
+            //Debug.Log("Landing");
+            anime.playFrogIdleAnim();
+            //Debug.Log("Landed on ground");
+        }
+        if (collision.transform.CompareTag("BULB"))
+        {
+            if (!invincible)
+            {
+                Debug.Log("Hit");
+                invincible = true;
+                invincibleTimer = 5;
+
+                GetComponent<Renderer>().material.color = Color.red;
+                MyCoroutine();
+                Reload();
+            }
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("midground") || collision.transform.CompareTag("Spider"))
         {
             on_ground = true;
-            anime.playFrogLandingAnim();
-            anime.setFrogGround();
-            Debug.Log("Landed on ground");
+            //anime.playFrogLandingAnim();
+            //anime.setFrogGround();
+            //Debug.Log("Landed on ground");
         }
         if (collision.transform.CompareTag("Wasp"))
         {
             if (!invincible)
             {
-                Debug.Log("Hit by Wasp");
+                //Debug.Log("Hit by Wasp");
                 invincible = true;
                 invincibleTimer = 5;
 
@@ -160,8 +206,9 @@ public class frog_jump : MonoBehaviour
         if (collision.transform.CompareTag("midground"))
         {
             on_ground = false;
-            anime.playFrogJumpAnim();
-            Debug.Log("Midair");
+            //Debug.Log("in air");
+            //anime.playFrogJumpAnim();
+            //Debug.Log("Midair");
             //anime.setFrogMidair();
         }
     }
@@ -169,9 +216,9 @@ public class frog_jump : MonoBehaviour
     {
         if (collision.transform.CompareTag("Water"))
         {
-            Debug.Log("in");
+            //Debug.Log("in");
             in_water = true;
-            anime.setInWater();
+            //anime.setInWater();
             
         }
     }
@@ -179,9 +226,9 @@ public class frog_jump : MonoBehaviour
     {
         if (collision.transform.CompareTag("Water"))
         {
-            Debug.Log("out");
+            //Debug.Log("out");
             in_water = false;
-            anime.setOutWater();
+            //anime.setOutWater();
         }
     }
 
@@ -213,10 +260,10 @@ public class frog_jump : MonoBehaviour
     }
     IEnumerator MyCoroutine()
     {
-        Debug.Log("Restart Countdown Started");
+        //Debug.Log("Restart Countdown Started");
 
         yield return new WaitForSeconds(3);
 
-        Debug.Log("Restarting");
+        //Debug.Log("Restarting");
     }
 }

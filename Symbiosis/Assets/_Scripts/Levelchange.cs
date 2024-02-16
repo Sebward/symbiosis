@@ -3,11 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.Sprites;
 
 public class Levelchange : MonoBehaviour
 {
     public GameObject go_target_location;
+    public int LevelChangeWaitTime = 3;
+    public Sprite None;
+    public Sprite One;
+    public Sprite Both;
+    public SpriteRenderer spriterender;
     private Vector2 v_player_target_location;
+    public int Players_At_End = 0;
 
     public GameObject camera_target_location;
     private Vector2 v_camera_target_location;
@@ -24,10 +31,33 @@ public class Levelchange : MonoBehaviour
         players[0] = GameObject.FindWithTag("Frog");
         players[1] = GameObject.FindWithTag("Spider");
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //Debug.Log("Player touched loading zone");
-        if (other.gameObject.CompareTag("Spider") || other.gameObject.CompareTag("Frog")) GoTo(v_player_target_location, v_camera_target_location);
+        if (other.gameObject.CompareTag("Spider") || other.gameObject.CompareTag("Frog"))
+        {
+            Players_At_End++;
+            Debug.Log("Players at end increased too:" + Players_At_End);
+            if (Players_At_End == 1)
+            {
+                spriterender.sprite = One;
+            }
+            if (Players_At_End == 2)
+            {
+                spriterender.sprite = Both;
+                Invoke("WaitSeconds",LevelChangeWaitTime);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Spider") || other.gameObject.CompareTag("Frog"))
+        {
+            Players_At_End--;
+            spriterender.sprite = None;
+
+        }
     }
     public void GoTo(Vector2 PlayerTargetLoc, Vector2 CameraTargetLoc)
     {
@@ -40,5 +70,11 @@ public class Levelchange : MonoBehaviour
         Camera.transform.position = new Vector3(CameraTargetLoc.x, CameraTargetLoc.y, Camera.transform.position.z);
 
         //Debug.Log("Camera Position: " + Camera.transform.position);
+    }
+    void WaitSeconds()
+    {
+        Debug.Log("Wait Started for: 5");
+        Debug.Log("Wait over!");
+        GoTo(v_player_target_location, v_camera_target_location);
     }
 }

@@ -16,6 +16,9 @@ public class spider_crawl : MonoBehaviour
 
     public Sprite[] sprites;
     private SpriteRenderer spriteRenderer;
+    public bool dead = false;
+
+    public Transform change_image_detect;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +36,12 @@ public class spider_crawl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dead)
+        {
+            can_move = false;
+            can_crawl = false;
+            rb.isKinematic = true;
+        }
         if (can_move || can_crawl)
         {
             h = move_speed * Input.GetAxis("Horizontal");
@@ -42,7 +51,7 @@ public class spider_crawl : MonoBehaviour
             Vector2 move_vector = Vector2.right * h + Vector2.up * v;
             rb.velocity = move_vector;
         }
-
+        
     }
     private void FixedUpdate()
     {
@@ -61,7 +70,30 @@ public class spider_crawl : MonoBehaviour
                 rb.velocity = move_vector;
             }
         }
+
+        List<RaycastHit2D> hit_list = new List<RaycastHit2D>();
+        ContactFilter2D c_contactFilter = new ContactFilter2D();
+        c_contactFilter.useTriggers = true;
+
+        int hits = Physics2D.CircleCast(change_image_detect.position, 0.1f, Vector2.zero, c_contactFilter, hit_list);
+        Debug.Log("Hit numbers: " + hits + " list size: " + hit_list.Count);
+        Debug.Log("__________________");
+        
+        bool crawl = false;
+        foreach (RaycastHit2D hit in hit_list)
+        {
+            Debug.Log(hit.collider.gameObject.name);
+            if(hit.transform.CompareTag("SpiderCrawl"))
+            {
+                spriteRenderer.sprite = sprites[1];
+                crawl = true;
+            }
+        }
+
+        if (crawl == false) spriteRenderer.sprite = sprites[0];
+        Debug.Log("spider crawling ? " + crawl);
     }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("midground"))
@@ -72,6 +104,19 @@ public class spider_crawl : MonoBehaviour
         if (collision.transform.CompareTag("Frog"))
         {
             can_move = true;
+        }
+        if (collision.transform.CompareTag("BULB"))
+        {
+            if (!dead)
+            {
+                Debug.Log("Spider die!!!!");
+                dead = true;
+                can_crawl = false;
+                rb.gravityScale = 0.0f;
+                rb.velocity = new Vector2(0, 0);
+                transform.position -= new Vector3(0, 0.5f, 0);
+                rb.transform.localScale = new Vector3(2, -2, 2);
+            }
         }
     }
 
@@ -93,11 +138,12 @@ public class spider_crawl : MonoBehaviour
         if (collision.transform.CompareTag("Water"))
         {
             Debug.Log("Spider die!!!!");
+            dead = true;
             can_crawl = false;
             rb.gravityScale = 0.0f;
             transform.position -= new Vector3(0, 1, 0);
             rb.transform.localScale = new Vector3(2, -2, 2);
-            Application.Quit();
+            
             //rb.velocity = Vector2.zero;     
         }
     }
@@ -108,11 +154,12 @@ public class spider_crawl : MonoBehaviour
             //Debug.Log("Spider can crawl");
             can_crawl = true;
             rb.gravityScale = 0;
-            spriteRenderer.sprite = sprites[1];
+            
         }
         if (collision.transform.CompareTag("Tongue"))
         {
             can_crawl = true;
+            rb.gravityScale = 0;
         }
         if (collision.transform.CompareTag("Water"))
         {
@@ -129,7 +176,7 @@ public class spider_crawl : MonoBehaviour
         {
             can_crawl = false;
             rb.gravityScale = 2;
-            spriteRenderer.sprite = sprites[0];
+            
         }
         if (collision.transform.CompareTag("Tongue"))
         {
