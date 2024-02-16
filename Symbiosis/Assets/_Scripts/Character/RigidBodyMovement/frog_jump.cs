@@ -75,7 +75,7 @@ public class frog_jump : MonoBehaviour
         }
         else
         {
-            jumpPowerSlider.value -= .5f;
+            jumpPowerSlider.value -= .3f;
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
         {
@@ -98,6 +98,7 @@ public class frog_jump : MonoBehaviour
                     rb.velocity = jump_impulse;
                 }
                 charge_time = 0.0f;
+                //jumpPowerSlider.value = 0.0f;
                 anime.playFrogJumpAnim();
                 Debug.Log("Midair");
             }
@@ -154,6 +155,7 @@ public class frog_jump : MonoBehaviour
                 anime.setFrogGround();
                 Debug.Log("Landing");
                 finished_jump = false;
+                jumpPowerSlider.value = 0;
             }
             //anime.playFrogLandingAnim();
             //anime.setFrogGround();
