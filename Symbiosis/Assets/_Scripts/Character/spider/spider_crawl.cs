@@ -113,6 +113,7 @@ public class spider_crawl : MonoBehaviour
         if (collision.transform.CompareTag("Tongue"))
         {
             can_crawl = true;
+            rb.gravityScale = 0;
         }
         if (collision.transform.CompareTag("Water"))
         {
