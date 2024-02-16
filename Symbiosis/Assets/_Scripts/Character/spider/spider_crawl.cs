@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class spider_crawl : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class spider_crawl : MonoBehaviour
     public Sprite[] sprites;
     private SpriteRenderer spriteRenderer;
     public bool dead = false;
+
+    //Getting hit variables
+    private float invincibleTimer;
+    private bool invincible;
+    public EggManager eggManager;
 
     public Transform change_image_detect;
     // Start is called before the first frame update
@@ -92,6 +98,18 @@ public class spider_crawl : MonoBehaviour
 
         if (crawl == false) spriteRenderer.sprite = sprites[0];
         Debug.Log("spider crawling ? " + crawl);
+
+        if (invincible)
+        {
+            if (invincibleTimer < 0)
+            {
+                //Debug.Log("No longer invincible");
+                invincible = false;
+                GetComponent<Renderer>().material.color = Color.white;
+                return;
+            }
+            invincibleTimer -= Time.deltaTime;
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -116,6 +134,21 @@ public class spider_crawl : MonoBehaviour
                 rb.velocity = new Vector2(0, 0);
                 transform.position -= new Vector3(0, 0.5f, 0);
                 rb.transform.localScale = new Vector3(2, -2, 2);
+            }
+        }
+        if (collision.transform.CompareTag("Ant"))
+        {
+            if (!invincible)
+            {
+                //Debug.Log("Hit by Ant");
+                invincible = true;
+                invincibleTimer = 5;
+
+                //Drop eggs?
+                //eggManager.removeEgg();
+                GetComponent<Renderer>().material.color = Color.red;
+                MyCoroutine();
+                Reload();
             }
         }
     }
@@ -183,5 +216,20 @@ public class spider_crawl : MonoBehaviour
             can_crawl = false;
             rb.gravityScale = 2;
         }
+    }
+
+    public void Reload()
+    {
+        SceneManager.UnloadSceneAsync(1);
+
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
+    }
+    IEnumerator MyCoroutine()
+    {
+        //Debug.Log("Restart Countdown Started");
+
+        yield return new WaitForSeconds(3);
+
+        //Debug.Log("Restarting");
     }
 }

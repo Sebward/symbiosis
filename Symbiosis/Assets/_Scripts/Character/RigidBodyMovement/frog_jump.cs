@@ -26,6 +26,7 @@ public class frog_jump : MonoBehaviour
     //Getting hit variables
     private float invincibleTimer;
     private bool invincible;
+    public EggManager eggManager;
 
     //values for collider rescale
     Vector2 offset1R = new Vector2(0.095f, -0.42f);
@@ -195,6 +196,7 @@ public class frog_jump : MonoBehaviour
                 invincibleTimer = 5;
 
                 //Drop eggs?
+                //eggManager.removeEgg();
                 GetComponent<Renderer>().material.color = Color.red;
                 MyCoroutine();
                 Reload();
