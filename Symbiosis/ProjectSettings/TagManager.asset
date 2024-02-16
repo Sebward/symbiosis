@@ -13,6 +13,7 @@ TagManager:
   - Frog
   - SpiderCrawl
   - Wasp
+  - Ant
   layers:
   - Default
   - TransparentFX
