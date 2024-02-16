@@ -62,6 +62,17 @@ public class spider_crawl : MonoBehaviour
             }
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("BULB"))
+        {
+            Debug.Log("Spider die!!!!");
+            can_crawl = false;
+            rb.gravityScale = 0.0f;
+            transform.position -= new Vector3(0, 1, 0);
+            rb.transform.localScale = new Vector3(2, -2, 2);
+        }
+    }
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("midground"))

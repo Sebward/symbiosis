@@ -4,34 +4,23 @@ using UnityEngine;
 
 public class BULB_acid : MonoBehaviour
 {
-    BoxCollider2D trigger;
-    ParticleSystem party;
-
-    private void Awake()
-    { 
-        trigger = GetComponent<BoxCollider2D>();
-        party = GetComponent<ParticleSystem>();
-    }
+    public GameObject bulb_shoot;
+    public float timer = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        var stop = party.emission;
-        stop.enabled = false;
+
     }
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("Collision entered -- thing should activate");
-        var start = party.emission;
-        if (collision.transform.CompareTag("Spider") || collision.transform.CompareTag("Frog"))
+        timer += Time.deltaTime;
+        if(timer > 2)
         {
-            start.enabled = true;
+            Debug.Log("New");
+            Instantiate(bulb_shoot,transform.position,Quaternion.identity);
+            timer = 0;
         }
     }
 }
