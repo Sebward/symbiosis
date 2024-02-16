@@ -13,6 +13,7 @@ TagManager:
   - Frog
   - SpiderCrawl
   - Wasp
+  - BULB
   layers:
   - Default
   - TransparentFX
