@@ -5,7 +5,7 @@ using UnityEngine;
 public class EggManager : MonoBehaviour
 {
     [SerializeField]
-    private int eggTotal = 0;
+    public int eggTotal = 0;
 
     public void addEgg(int eggsAdded = 1)
     {
