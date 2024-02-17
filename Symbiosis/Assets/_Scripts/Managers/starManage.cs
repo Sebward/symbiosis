@@ -59,11 +59,15 @@ public class starManage : MonoBehaviour
 
     public void Restart()
     {
+        ClosePauseMenue();
+
         SceneManager.UnloadSceneAsync(currentSceneIndex);
 
         SceneManager.LoadScene(currentSceneIndex, LoadSceneMode.Single);
 
         Time.timeScale = b_isPaused ? 0.0f : 1.0f;
+
+        Time.fixedDeltaTime = b_isPaused ? 0f : 0.02f;
     }
 
     public void ReturnToMenu()
