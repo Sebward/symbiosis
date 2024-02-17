@@ -63,7 +63,7 @@ public class starManage : MonoBehaviour
 
         SceneManager.LoadScene(currentSceneIndex, LoadSceneMode.Single);
 
-        TogglePause();
+        Time.timeScale = b_isPaused ? 0.0f : 1.0f;
     }
 
     public void ReturnToMenu()

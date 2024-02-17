@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Sprites;
@@ -11,6 +12,8 @@ public class Levelchange : MonoBehaviour
     private Vector2 v_player_target_location;
     public GameObject Camera;
     public GameObject camera_target_location;
+    public GameObject EndScreen;
+    public int Currentlevel;
 
 
     public int LevelChangeWaitTime = 3;
@@ -30,6 +33,8 @@ public class Levelchange : MonoBehaviour
 
         players[0] = GameObject.FindWithTag("Frog");
         players[1] = GameObject.FindWithTag("Spider");
+
+        EndScreen.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -69,6 +74,15 @@ public class Levelchange : MonoBehaviour
 
         Camera.transform.position = new Vector3(CameraTargetLoc.x, CameraTargetLoc.y, Camera.transform.position.z);
 
+        if (Currentlevel < 4)
+        {
+            Currentlevel++;
+        }
+        else
+        {
+            EnableEndScreen();
+        }
+
         //Debug.Log("Camera Position: " + Camera.transform.position);
     }
     void WaitSeconds()
@@ -76,5 +90,10 @@ public class Levelchange : MonoBehaviour
         Debug.Log("Wait Started for: 5");
         Debug.Log("Wait over!");
         GoTo(v_player_target_location, v_camera_target_location);
+    }
+
+    public void EnableEndScreen()
+    {
+        EndScreen.SetActive(true);
     }
 }
