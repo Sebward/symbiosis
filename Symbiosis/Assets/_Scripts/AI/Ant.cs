@@ -229,6 +229,7 @@ public class Ant : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Frog hit tognue");
         if (collision.transform.CompareTag("Tongue"))
         {
             Destroy(gameObject);
