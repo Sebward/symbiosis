@@ -235,4 +235,12 @@ public class Ant : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Tongue"))
+        {
+            Debug.Log("Tongue hit ant");
+            Destroy(gameObject);
+        }
+    }
 }

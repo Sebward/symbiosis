@@ -22,6 +22,9 @@ public class frog_tongue : MonoBehaviour
     {
         frog_rb = mousePos.GetComponentInParent<Rigidbody2D>();
 
+        Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
+
         tongueLine = GetComponent<LineRenderer>();
         if (tongueLine == null ) tongueLine = transform.AddComponent<LineRenderer>();
 
