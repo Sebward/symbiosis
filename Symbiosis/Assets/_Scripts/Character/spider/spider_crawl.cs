@@ -17,7 +17,7 @@ public class spider_crawl : MonoBehaviour
 
     public Sprite[] sprites;
     private SpriteRenderer spriteRenderer;
-    public bool dead = false;
+    //public bool dead = false;
 
     //Getting hit variables
     private float invincibleTimer;
@@ -42,12 +42,7 @@ public class spider_crawl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dead)
-        {
-            can_move = false;
-            can_crawl = false;
-            rb.isKinematic = true;
-        }
+        
         if (can_move || can_crawl)
         {
             h = move_speed * Input.GetAxis("Horizontal");
@@ -125,16 +120,14 @@ public class spider_crawl : MonoBehaviour
         }
         if (collision.transform.CompareTag("BULB"))
         {
-            if (!dead)
-            {
-                Debug.Log("Spider die!!!!");
-                dead = true;
-                can_crawl = false;
-                rb.gravityScale = 0.0f;
-                rb.velocity = new Vector2(0, 0);
-                transform.position -= new Vector3(0, 0.5f, 0);
-                rb.transform.localScale = new Vector3(2, -2, 2);
-            }
+            Debug.Log("Spider die!!!!");
+            //dead = true;
+            can_crawl = false;
+            rb.gravityScale = 0.0f;
+            rb.velocity = new Vector2(0, 0);
+            transform.position -= new Vector3(0, 0.5f, 0);
+            rb.transform.localScale = new Vector3(2, -2, 2);
+            Reload();
         }
         if (collision.transform.CompareTag("Ant"))
         {
@@ -171,12 +164,12 @@ public class spider_crawl : MonoBehaviour
         if (collision.transform.CompareTag("Water"))
         {
             Debug.Log("Spider die!!!!");
-            dead = true;
+            //dead = true;
             can_crawl = false;
             rb.gravityScale = 0.0f;
             transform.position -= new Vector3(0, 1, 0);
             rb.transform.localScale = new Vector3(2, -2, 2);
-            
+            Reload();
             //rb.velocity = Vector2.zero;     
         }
     }
