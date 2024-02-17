@@ -8,19 +8,19 @@ using UnityEngine.Sprites;
 public class Levelchange : MonoBehaviour
 {
     public GameObject go_target_location;
+    private Vector2 v_player_target_location;
+    public GameObject Camera;
+    public GameObject camera_target_location;
+
+
     public int LevelChangeWaitTime = 3;
     public Sprite None;
     public Sprite One;
     public Sprite Both;
     public SpriteRenderer spriterender;
-    private Vector2 v_player_target_location;
     public int Players_At_End = 0;
 
-    public GameObject camera_target_location;
     private Vector2 v_camera_target_location;
-
-    public GameObject Camera;
-
     private GameObject[] players = new GameObject[2];
 
     void Start()
