@@ -23,7 +23,7 @@ public class starManage : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.E))
         {
             if (i_screenState == 0)
             {

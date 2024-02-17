@@ -184,8 +184,10 @@ public class Ant : MonoBehaviour
     {
         if(seeker.IsDone())
         {
+            currentWaypoint = 0;
             if (TargetInRange())
             {
+                currentWaypoint = 0;
                 seeker.StartPath(rb.position, playerTarget.position, OnPathComplete);
                 currentTarget = playerTarget;
             }
@@ -195,11 +197,13 @@ public class Ant : MonoBehaviour
                 //If statement to decide which target to go to
                 if (patrolTarget)
                 {
+                    currentWaypoint = 0;
                     seeker.StartPath(rb.position, patrol1.position, OnPathComplete);
                     currentTarget = patrol1;
                 }
                 else
                 {
+                    currentWaypoint = 0;
                     seeker.StartPath(rb.position, patrol2.position, OnPathComplete);
                     currentTarget = patrol2;
                 }
