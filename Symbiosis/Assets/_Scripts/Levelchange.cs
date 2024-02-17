@@ -25,9 +25,11 @@ public class Levelchange : MonoBehaviour
 
     private Vector2 v_camera_target_location;
     private GameObject[] players = new GameObject[2];
+    public frog_tongue frogTongue;
 
     void Start()
     {
+        frogTongue = FindObjectOfType<frog_tongue>();
         v_player_target_location = go_target_location.transform.position;
         v_camera_target_location = camera_target_location.transform.position;
 
@@ -90,6 +92,7 @@ public class Levelchange : MonoBehaviour
         Debug.Log("Wait Started for: 5");
         Debug.Log("Wait over!");
         GoTo(v_player_target_location, v_camera_target_location);
+        frogTongue.RetractTongue();
     }
 
     public void EnableEndScreen()

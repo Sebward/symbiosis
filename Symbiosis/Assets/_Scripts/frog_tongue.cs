@@ -143,6 +143,7 @@ public class frog_tongue : MonoBehaviour
     }
     public void RetractTongue()
     {
+        tongueLine.SetPosition(0, mousePos.position);
         tongueLine.SetPosition(1, tongueLine.GetPosition(0));
     }
 }

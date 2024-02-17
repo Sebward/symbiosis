@@ -77,8 +77,8 @@ public class spider_crawl : MonoBehaviour
         c_contactFilter.useTriggers = true;
 
         int hits = Physics2D.CircleCast(change_image_detect.position, 0.1f, Vector2.zero, c_contactFilter, hit_list);
-        Debug.Log("Hit numbers: " + hits + " list size: " + hit_list.Count);
-        Debug.Log("__________________");
+        //Debug.Log("Hit numbers: " + hits + " list size: " + hit_list.Count);
+        //Debug.Log("__________________");
         
         bool crawl = false;
         foreach (RaycastHit2D hit in hit_list)
@@ -92,7 +92,7 @@ public class spider_crawl : MonoBehaviour
         }
 
         if (crawl == false) spriteRenderer.sprite = sprites[0];
-        Debug.Log("spider crawling ? " + crawl);
+        //Debug.Log("spider crawling ? " + crawl);
 
         if (invincible)
         {
