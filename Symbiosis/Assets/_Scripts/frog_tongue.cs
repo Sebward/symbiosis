@@ -138,7 +138,7 @@ public class frog_tongue : MonoBehaviour
 
         return colliderPositions;
     }
-    void RetractTongue()
+    public void RetractTongue()
     {
         tongueLine.SetPosition(1, tongueLine.GetPosition(0));
     }

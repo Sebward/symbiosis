@@ -19,7 +19,9 @@ public class BULB_acid : MonoBehaviour
         if(timer > 2)
         {
             //Debug.Log("New");
-            Instantiate(bulb_shoot,transform.position,Quaternion.identity);
+            Vector3 spawn_pos = transform.position;
+            spawn_pos.z = -1;
+            Instantiate(bulb_shoot,spawn_pos,Quaternion.identity);
             timer = 0;
         }
     }
