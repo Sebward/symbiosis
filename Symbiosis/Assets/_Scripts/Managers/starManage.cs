@@ -67,7 +67,7 @@ public class starManage : MonoBehaviour
 
         Time.timeScale = b_isPaused ? 0.0f : 1.0f;
 
-        Time.fixedDeltaTime = b_isPaused ? 0f : 0.02f;
+        //Time.fixedDeltaTime = b_isPaused ? 0f : 0.02f;
     }
 
     public void ReturnToMenu()
@@ -80,6 +80,6 @@ public class starManage : MonoBehaviour
 
         Time.timeScale = b_isPaused ? 0.0f : 1.0f;
 
-        Time.fixedDeltaTime = b_isPaused ? 0f : 0.02f;
+        //Time.fixedDeltaTime = b_isPaused ? 0f : 0.02f;
     }
 }
